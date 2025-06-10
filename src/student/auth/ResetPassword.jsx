@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../icons/logo.svg";
-import eye from "../../icons/eye.svg";
+import eye from "../../icons/Eye.svg";
 import eyeSlash from "../../icons/EyeSlash.svg";
 import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";

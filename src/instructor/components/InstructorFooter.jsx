@@ -11,14 +11,17 @@ const Footer = () => {
         All rights reserved
       </div>
       <div className="flex gap-4">
-        <Link to="/faqs" className="hover:underline">
+        <Link to="/instructor/faqs" className="hover:underline">
           FAQs
         </Link>
-        <Link to="/privacy-policy" className="hover:underline">
+        <Link to="/instructor/privacy" className="hover:underline">
           Privacy Policy
         </Link>
-        <Link to="/terms" className="hover:underline">
+        <Link to="/instructor/terms" className="hover:underline">
           Terms & Condition
+        </Link>
+        <Link to="/instructor/desclaimer" className="hover:underline">
+          Disclaimer
         </Link>
       </div>
     </footer>

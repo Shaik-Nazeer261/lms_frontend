@@ -99,11 +99,12 @@ const About = () => {
       <div className="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
         <h2 className="text-5xl font-bold text-[#E9EAF0] mb-2">2019–2025</h2>
         <h3 className="text-3xl max-w-xs font-semibold text-[#00113D] mb-4 ">
-          We share knowledge with the world
+          Empowering Minds. Transforming Futures.
         </h3>
         <p className="text-gray-500 text-base max-w-sm leading-relaxed">
-          Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent fermentum quam mauris.
-          Fusce tempor et augue a aliquet. Donec non ipsum non risus egestas tincidunt at vitae nulla.
+          At The Learning Hub, we believe that education is the foundation of progress — and that learning should be accessible, flexible, and empowering for everyone, everywhere.
+Born out of a passion to bridge the gap between knowledge seekers and knowledge sharers, The Learning Hub is more than just an e-learning platform. We are a global learning ecosystem where curious minds meet skilled instructors, and career goals become realities.
+
         </p>
       </div>
 
@@ -125,8 +126,7 @@ const About = () => {
             We Just keep growing <br /> with 6.3k Companies
           </h2>
           <p className="text-gray-500 text-sm">
-            Nullam egestas tellus at enim ornare tristique. <br />
-            Class aptent taciti sociosqu ad litora torquent
+            To become a leading global platform where anyone can teach, learn, and transform their life — one course at a time.
           </p>
         </div>
 
@@ -178,7 +178,7 @@ const About = () => {
             sounds bold, We agree.
           </h2>
           <p className="text-gray-600 text-sm max-w-lg">
-            "We cannot solve our problems with the same thinking we used when we created them." —Albert Einstein. Institutions are slow to change. Committees are where good ideas and innovative thinking go to die. Choose agility over dogma. Embrace and drive change. We need to wipe the slate clean and begin with bold, radical thinking.
+            To make high-quality education affordable, accessible, and actionable, empowering learners and educators to grow together through innovation and collaboration.
           </p>
         </div>
       </div>
@@ -191,12 +191,10 @@ const About = () => {
         <div className="lg:w-1/2 text-center lg:text-left">
           <p className=" text-blue-500 font-semibold text-xs ">Our Gallery</p>
           <h2 className=" sm:text-2xl font-semibold text-[#00113D] mb-4 ">
-            We’ve been here <br className="hidden sm:block" /> almost 2 years
+            Join the Movement
           </h2>
           <p className="text-gray-600 text-sm max-w-[19rem] mb-4">
-            Fusce lobortis leo augue, sit amet tristique nisi commodo in. 
-            Aliquam ac libero quis tellus venenatis imperdiet. Sed sed nunc libero. 
-            Curabitur in urna ligula. Torquent per conubia nostra.
+            Whether you’re here to teach the next generation, upgrade your skills, or follow a passion, The Learning Hub is where your journey begins.
           </p>
           <button className="bg-blue-500 text-white px-5 py-2 text-xs  font-medium hover:bg-blue-600 transition">
             Join Our Team →

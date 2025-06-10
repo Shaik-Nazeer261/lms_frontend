@@ -10,163 +10,137 @@ const Faqs = () => {
 
   // Tabs data with different questions for each tab
   const tabsData = {
-    tab1: {
-      name: "Nulla tempor odio ut fringilla",
-      faqs: [
-        {
-          id: "accordion1",
-          question: "Fusce placerat interdum magna, ut ultricies odio pharetra pulvinar.",
-          answer: "",
-        },
-        {
-          id: "accordion2",
-          question: "Proin lacinia lobortis metus, ut faucibus eros ullamcorper et.",
-          answer: "",
-        },
-        {
-          id: "accordion3",
-          question: "Etiam a nisl dui. Integer sed eros sed leo blandit interdum eget nec",
-          answer: "",
-        },
-        {
-          id: "accordion4",
-          question: "Nulla id ligula ligula.",
-          answer: (
-            <div>
-              <p className="mb-4">
-                Aliquam semper tellus vel lacus rutrum mollis. Nunc vitae iaculis lacus, id fringilla leo. Nulla dictum,
-                enim nec bibendum auctor, lorem mi rutrum urna, sed luctus urna nibh sit amet velit. Sed varius sem
-                semper leo ultricies tincidunt. Etiam id ligula ut augue auctor molestie ut quis felis.
-              </p>
-              <ol className="list-decimal pl-6 mb-4 space-y-1">
-                <li>Sed lorem elit, aliquam vel neque condimentum, blandit cursus nisi.</li>
-                <li>Cras ullamcorper posuere felis et vehicula.</li>
-                <li>Donec dignissim metus felis, non posuere arcu finibus a.</li>
-              </ol>
-              <p className="mb-4">
-                Sed interdum dignissim odio, vitae mollis nisi congue nec. Ut tellus metus, posuere vel odio ut,
-                ullamcorper rutrum ex. Curabitur porttitor sem nec felis mollis, nec laoreet leo iaculis.
-              </p>
-              <ul className="list-disc pl-6 mb-4 space-y-1">
-                <li>Donec ut massa</li>
-                <li>ac magna iaculis imperdiet ut viverra arcu.</li>
-              </ul>
-              <p>
-                Proin quis elementum velit, eget efficitur nulla. Donec tellus massa, faucibus id nulla sit amet,
-                feugiat viverra justo. Curabitur auctor nibh ut ante lacinia, ac finibus sem pulvinar. Suspendisse
-                vestibulum in dolor eget sodales. Curabitur justo risus, vehicula ac mollis sit amet, gravida sed erat.
-              </p>
-            </div>
-          ),
-        },
-        {
-          id: "accordion5",
-          question: "Etiam non tellus non dolor suscipit vehicula.",
-          answer: "",
-        },
-        {
-          id: "accordion6",
-          question: "Vestibulum pellentesque ex magna.",
-          answer: "",
-        },
-        {
-          id: "accordion7",
-          question: "Ut ullamcorper est sit amet quam aliquet mattis.",
-          answer: "",
-        },
-      ],
+   tab1: {
+  name: "About The Learning Hub",
+  faqs: [
+    {
+      id: "tab9-faq1",
+      question: "What is The Learning Hub?",
+      answer: "The Learning Hub is an online learning platform that connects learners and instructors through high-quality, self-paced courses across a wide range of subjects.",
     },
-    tab2: {
-      name: "Donec malesuada",
-      faqs: [
-        {
-          id: "tab2-faq1",
-          question: "What is your return policy?",
-          answer: "Our return policy allows returns within 30 days of purchase with original receipt.",
-        },
-        {
-          id: "tab2-faq2",
-          question: "How do I track my order?",
-          answer: "You can track your order by logging into your account and viewing your order history.",
-        },
-        {
-          id: "tab2-faq3",
-          question: "Do you offer international shipping?",
-          answer: "Yes, we offer international shipping to most countries. Shipping rates vary by location.",
-        },
-      ],
+    {
+      id: "tab9-faq2",
+      question: "How do I sign up on The Learning Hub?",
+      answer: "You can sign up using your email or social login via the “Sign Up” button on the homepage.",
     },
-    tab3: {
-      name: "Quisque",
-      faqs: [
-        {
-          id: "tab3-faq1",
-          question: "How do I reset my password?",
-          answer: "You can reset your password by clicking the 'Forgot Password' link on the login page.",
-        },
-        {
-          id: "tab3-faq2",
-          question: "Is my personal information secure?",
-          answer: "Yes, we use industry-standard encryption to protect your personal information.",
-        },
-      ],
+    {
+      id: "tab9-faq3",
+      question: "Is The Learning Hub free to use?",
+      answer: "Browsing the platform is free. However, most courses are paid, unless marked as free by instructors.",
     },
-    tab4: {
-      name: "Toquam, in accumsan",
-      faqs: [
-        {
-          id: "tab4-faq1",
-          question: "What payment methods do you accept?",
-          answer: "We accept credit cards, PayPal, and bank transfers.",
-        },
-        {
-          id: "tab4-faq2",
-          question: "How long does shipping take?",
-          answer:
-            "Shipping typically takes 3-5 business days for domestic orders and 7-14 days for international orders.",
-        },
-      ],
+    {
+      id: "tab9-faq4",
+      question: "How can I enroll in a course?",
+      answer: "Simply click on the course, select “Enroll Now,” and complete the payment process.",
     },
-    tab5: {
-      name: "Ut sed orci",
-      faqs: [
-        {
-          id: "tab5-faq1",
-          question: "Do you offer bulk discounts?",
-          answer: "Yes, we offer discounts for bulk orders. Please contact our sales team for more information.",
-        },
-      ],
+    {
+      id: "tab9-faq5",
+      question: "Do I get a certificate after course completion?",
+      answer: "Yes, upon successful completion, a digital certificate will be available for download.",
     },
-    tab6: {
-      name: "Nullam non ante",
-      faqs: [
-        {
-          id: "tab6-faq1",
-          question: "How can I become a distributor?",
-          answer: "To become a distributor, please fill out the distributor application form on our website.",
-        },
-      ],
+    {
+      id: "tab9-faq6",
+      question: "Can I access courses on mobile?",
+      answer: "Absolutely. The Learning Hub is optimized for both desktop and mobile access.",
     },
-    tab7: {
-      name: "Phasellus",
-      faqs: [
-        {
-          id: "tab7-faq1",
-          question: "What is your warranty policy?",
-          answer: "Our products come with a 1-year warranty against manufacturing defects.",
-        },
-      ],
+    {
+      id: "tab9-faq7",
+      question: "What types of courses are offered?",
+      answer: "We offer courses in technology, business, design, personal development, health, and more.",
     },
-    tab8: {
-      name: "Etiam eu libero elementum",
-      faqs: [
-        {
-          id: "tab8-faq1",
-          question: "How do I contact customer support?",
-          answer: "You can contact customer support by email, phone, or through the contact form on our website.",
-        },
-      ],
+    {
+      id: "tab9-faq8",
+      question: "Can I preview a course before purchasing?",
+      answer: "Many courses offer free previews to help you decide before enrolling.",
     },
+    {
+      id: "tab9-faq9",
+      question: "How do I contact support?",
+      answer: "You can reach our support team via the Contact page or email us at [Insert email]",
+    },
+    {
+      id: "tab9-faq10",
+      question: "Is my payment information safe?",
+      answer: "Yes, all transactions are encrypted and processed through secure gateways.",
+    },
+    {
+      id: "tab9-faq11",
+      question: "Can I request a refund?",
+      answer: "Yes, we offer refunds based on our Refund Policy. Generally, requests must be made within 7 days of enrollment.",
+    },
+    {
+      id: "tab9-faq12",
+      question: "Can I access a course forever?",
+      answer: "Yes, once enrolled, you get lifetime access unless stated otherwise.",
+    },
+    {
+      id: "tab9-faq13",
+      question: "How do I become an instructor?",
+      answer: "Visit the “Become an Instructor” page and apply with your course idea or credentials.",
+    },
+    {
+      id: "tab9-faq14",
+      question: "Can I teach more than one course?",
+      answer: "Yes, instructors can create and manage multiple courses.",
+    },
+    {
+      id: "tab9-faq15",
+      question: "What are the earnings for instructors?",
+      answer: "Instructors earn a revenue share from each sale, details of which are provided in the Instructor Dashboard.",
+    },
+    {
+      id: "tab9-faq16",
+      question: "Can instructors update their course content?",
+      answer: "Yes, you can update or revise your course content at any time.",
+    },
+    {
+      id: "tab9-faq17",
+      question: "What format can I upload content in?",
+      answer: "The Learning hub supports video, audio, PDFs, quizzes, and downloadable resources.",
+    },
+    {
+      id: "tab9-faq18",
+      question: "Can organizations or teams enroll?",
+      answer: "Yes, we offer bulk enrollment and team learning solutions for enterprises.",
+    },
+    {
+      id: "tab9-faq19",
+      question: "Is there a mobile app?",
+      answer: "Currently, The Learning Hub is mobile-browser friendly. The app version is in development.",
+    },
+    {
+      id: "tab9-faq20",
+      question: "Are there live sessions?",
+      answer: "Some instructors may offer live classes or webinars in addition to recorded lessons.",
+    },
+    {
+      id: "tab9-faq21",
+      question: "Do instructors need teaching experience?",
+      answer: "Not necessarily. You just need deep knowledge and the ability to present it clearly.",
+    },
+    {
+      id: "tab9-faq22",
+      question: "Is there any course moderation or quality check?",
+      answer: "Yes, all courses go through a review process before being published.",
+    },
+    {
+      id: "tab9-faq23",
+      question: "What languages are supported?",
+      answer: "English is the primary language, but multi-language support is being developed.",
+    },
+    {
+      id: "tab9-faq24",
+      question: "Can I download the course content?",
+      answer: "Videos cannot be downloaded for offline use due to licensing restrictions, but PDFs and resources may be downloadable.",
+    },
+    {
+      id: "tab9-faq25",
+      question: "How do I delete my account?",
+      answer: "Contact support@galms.com with your registered email, and we’ll assist you.",
+    },
+  ],
+},
+
   }
 
   const handleTabClick = (tabId) => {

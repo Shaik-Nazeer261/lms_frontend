@@ -12,56 +12,71 @@ export default function TermsAndConditions() {
           </nav>
         </div>
 
-        {/* Content Sections */}
-        <div className="bg-white rounded-lg  p-8 space-y-8">
-          {/* 1. Acceptance of Terms */}
+        {/* Terms Content */}
+        <div className="bg-white rounded-lg p-8 space-y-8">
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-700 leading-relaxed">
-              By accessing or using this Learning Management System (LMS), you agree to be bound by these Terms and
-              Conditions. If you do not agree with any part of these terms, you must not use the platform.
+              By accessing or using The Learning Hub, you agree to these terms:
             </p>
           </section>
 
-          {/* 2. User Accounts */}
+          {/* 1. Account Usage */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">2. User Accounts</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">1. Account Usage</h2>
+            <ul className="list-disc pl-6 text-gray-700 space-y-1">
+              <li>You must be 18 years or older to register.</li>
+              <li>You are responsible for maintaining the confidentiality of your account.</li>
+            </ul>
+          </section>
+
+          {/* 2. Course Enrollment */}
+          <section>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">2. Course Enrollment</h2>
+            <ul className="list-disc pl-6 text-gray-700 space-y-1">
+              <li>Once enrolled, you have a non-transferable license to access course materials.</li>
+              <li>Sharing or reselling content is prohibited.</li>
+            </ul>
+          </section>
+
+          {/* 3. Instructor Content */}
+          <section>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">3. Instructor Content</h2>
+            <ul className="list-disc pl-6 text-gray-700 space-y-1">
+              <li>Instructors retain ownership of their content but grant The Learning Hub a license to distribute it.</li>
+              <li>All content must comply with copyright and decency laws.</li>
+            </ul>
+          </section>
+
+          {/* 4. Payments & Refunds */}
+          <section>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">4. Payments & Refunds</h2>
+            <ul className="list-disc pl-6 text-gray-700 space-y-1">
+              <li>All prices are clearly stated. Refunds are issued only as per our refund policy.</li>
+              <li>Taxes may apply depending on your location.</li>
+            </ul>
+          </section>
+
+          {/* 5. Platform Changes */}
+          <section>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">5. Platform Changes</h2>
             <p className="text-gray-700 leading-relaxed">
-              To access certain features of the LMS, you may be required to register for an account. You are responsible
-              for maintaining the confidentiality of your account credentials and for all activities that occur under
-              your account. The organization reserves the right to suspend or terminate accounts at its discretion,
-              especially in cases of misuse or violation of these terms.
+              We reserve the right to modify or discontinue any feature without notice.
             </p>
           </section>
 
-          {/* 3. Use of Content */}
+          {/* 6. Termination */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">3. Use of Content</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">6. Termination</h2>
             <p className="text-gray-700 leading-relaxed">
-              All content provided on this platform, including but not limited to text, videos, documents, graphics, and
-              assessments, is for personal, non-commercial use unless otherwise stated. You may not copy, distribute, or
-              modify any content without prior written permission from the content owner or administrator.
+              The Learning Hub may suspend or terminate your account for violation of the terms or misuse of the platform.
             </p>
           </section>
 
-          {/* 4. Code of Conduct */}
+          {/* 7. Limitation of Liability */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">4. Code of Conduct</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">7. Limitation of Liability</h2>
             <p className="text-gray-700 leading-relaxed">
-              Users must use the LMS respectfully and responsibly. This includes refraining from posting inappropriate
-              content, engaging in harassment, violating intellectual property rights, or attempting to disrupt the
-              platform's functionality. Any behavior deemed abusive or unethical may result in suspension or permanent
-              ban from the system.
-            </p>
-          </section>
-
-          {/* 5. Intellectual Property */}
-          <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">5. Intellectual Property</h2>
-            <p className="text-gray-700 leading-relaxed">
-              All content and materials on this LMS, unless explicitly stated otherwise, are the intellectual property
-              of the organization or its licensors. Unauthorized use, reproduction, or distribution of any part of the
-              content may result in legal action.
+              The Learning Hub is not liable for indirect or incidental damages arising from course use or platform downtime.
             </p>
           </section>
         </div>

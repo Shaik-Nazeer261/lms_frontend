@@ -24,19 +24,29 @@ import quotes from '../../icons/Quotes.svg'
 
 const features = [
   {
-    title: 'Tech your students as you want.',
+    title: '	Easy Course Creation Tools ',
     description:
-      'Morbi quis lorem non orci fermentum euismod. Nam sapien tellus, aliquam nec porttitor vel, pellentesque at metus.',
+      'Upload videos, quizzes, resources, and more.',
   },
   {
-    title: 'Manage your course, payment in one place',
+    title: 'Global Reach ',
     description:
-      'Sed et mattis urna. Sed tempus fermentum est, eu lobortis nibh consequat eu. Nullam vel libero pharetra, euismod turpis et, elementum enim.',
+      'Teach thousands of students from all over the world.',
   },
   {
-    title: 'Chat with your students',
+    title: 'Monetize Your Knowledge ',
     description:
-      'Nullam mattis lectus ac diam egestas posuere. Praesent auctor massa orci, ut fermentum eros dictum id.',
+      'Earn revenue for every course enrollment.',
+  },
+  {
+    title: 'Dashboard & Analytics ',
+    description:
+      'Track your performance, engagement, and earnings',
+  },
+  {
+    title: '24/7 Support ',
+    description:
+      'Get assistance from our dedicated instructor success team.',
   },
 ];
 
@@ -126,10 +136,13 @@ const BecomeInstructor = () => {
       {/* Text Section */}
       <div className="w-1/2 text-left ">
         <h2 className="text-4xl  font-semibold text-[#00113D] mb-4">
-          Become an Instructor
+         Inspire Learners. Earn Income. Grow Globally.
         </h2>
         <p className="text-gray-600 text-lg mb-6 max-w-[29rem]">
-          Become an instructor & start teaching with 26k certified instructors. Create a success story with 67.1k Students — Grow yourself with 71 countries.
+          Turn your passion and expertise into a rewarding teaching career with The Learning hub.
+
+
+
         </p>
         <button className="bg-[#58A6FD] hover:bg-blue-600 text-white font-medium py-2 px-6  shadow">
           Get Started
@@ -161,10 +174,10 @@ const BecomeInstructor = () => {
         </div>
       <div className="w-1/2 mx-auto px-20 py-2">
         <h2 className="text-2xl  font-semibold text-[#00113D] mb-4">
-          Why you’ll start teaching on GA LMS
+          Why Teach on The Learning Hub?
         </h2>
         <p className="text-gray-600 text-sm mb-8">
-          Praesent congue ornare nibh sed ullamcorper. Proin venenatis tellus non turpis scelerisque, vitae auctor arcu ornare. Cras vitae nulla a purus mollis venenatis.
+          At The Learning Hub, we believe great educators exist in every industry, and we give you the platform to teach what you love, reach global learners, and earn while doing it. Whether you're an experienced trainer, a subject matter expert, or a professional with unique knowledge, our tools make it easy to create, launch, and scale your online courses.
         </p>
 
         <div className="space-y-6">

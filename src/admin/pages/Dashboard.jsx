@@ -23,6 +23,8 @@ const [disapprovalReason, setDisapprovalReason] = useState("");
   // Add inside the component
 const [instructors, setInstructors] = useState([]);
 const [pendingCourses, setPendingCourses] = useState([]);
+const [adminEmail, setAdminEmail] = useState('');
+
 
 
 const fetchInstructors = async () => {

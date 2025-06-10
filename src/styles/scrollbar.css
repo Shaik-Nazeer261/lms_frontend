@@ -1,0 +1,12 @@
+/* scrollbar.css */
+
+/* Hide scrollbar but still allow scrolling */
+.hide-scrollbar {
+    overflow: auto;
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE/Edge */
+    
+  }
+  
+  
+  

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import search from "../../../icons/search.svg";
 import cart from "../../../icons/cart.svg";
-import caretdown from "../../../icons/Caretdown.svg";
+import caretdown from "../../../icons/caretdown.svg";
 import User from "../../../icons/User.svg";
 import { Link, NavLink } from "react-router-dom";
 import api from "../../../api.jsx"; // Adjust path if needed

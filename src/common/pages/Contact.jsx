@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import fit from '../images/fit.png'
+import fit from '../images/Fit.png'
 import Envelope from '../../icons/Envelope.svg'
 import PaperPlaneRight from '../../icons/PaperPlaneRight.svg'
 import map from '../images/map.png'

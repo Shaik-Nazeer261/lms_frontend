@@ -40,6 +40,7 @@ const Curriculum = ({ goToTab, courseId }) => {
   const [isFinalExamModalOpen, setIsFinalExamModalOpen] = useState(false);
 const [finalExamQuestions, setFinalExamQuestions] = useState([]);
 const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
+const [isSubmitting, setIsSubmitting] = useState(false); // ← Add this line 
 
 
   const contentOptions = [

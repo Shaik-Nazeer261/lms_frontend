@@ -1,9 +1,8 @@
-  import React, { useEffect, useMemo, useRef, useState } from 'react';
-  import { FiUpload } from 'react-icons/fi';
-  import image from '../../icons/image.svg';
+  import  { useEffect, useMemo, useRef, useState } from 'react';
+  import image from '../../icons/Image.svg';
   import bpc from '../../icons/bpc.svg';
   import JoditEditor from 'jodit-react';
-  import api from '../../api'; // adjust this import if needed
+  import api from '../../api.jsx'; // adjust this import if needed
 
   const AdvanceInformation = ({ goToTab, courseId }) => {
     const [whatYouWillLearn, setWhatYouWillLearn] = useState(['', '', '', '']);

@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import Mainheader from "../../common/components/headers/MainHeader";
+import Mainheader from "../../common/components/headers/MainHeader.jsx";
 
 export default function StudentHeader() {
  

@@ -1,9 +1,7 @@
-import React from "react";
 import { FaStar, FaPlayCircle } from "react-icons/fa";
-import { HiOutlineChevronDown } from "react-icons/hi";
 import { useState } from "react";
 import { useEffect } from "react";
-import api from "../../api";
+import api from "../../api.jsx";
 import { useParams } from "react-router-dom";
 import {
   FaClock,

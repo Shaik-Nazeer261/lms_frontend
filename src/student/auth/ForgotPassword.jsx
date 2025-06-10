@@ -6,7 +6,7 @@ import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
 import chevron_back from "../../icons/chevron_back.svg";
-import api from "../../api"; // Adjust the import path as necessary
+import api from "../../api.jsx"; // Adjust the import path as necessary
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

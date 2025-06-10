@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import fit from '../images/Fit.png'
 import Envelope from '../../icons/Envelope.svg'

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import api from "../../api";
-import { useLocation } from 'react-router-dom';
+import  { useEffect, useState } from "react";
+import api from "../../api.jsx";
 
 
 const BasicInformation = ({ goToTab, courseId, setCourseId }) => {

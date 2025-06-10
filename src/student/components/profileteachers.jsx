@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import search from '../../icons/search.svg';
+import  { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight, FaStar } from 'react-icons/fa';
-import api from '../../api'; // your configured Axios instance
+import api from '../../api.jsx'; // your configured Axios instance
 
 const ITEMS_PER_PAGE = 20;
 

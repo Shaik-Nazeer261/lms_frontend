@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { FaCircle, FaEllipsisH, FaSearch } from 'react-icons/fa';
+import  { useState, useEffect } from 'react';
+import {  FaEllipsisH, FaSearch } from 'react-icons/fa';
 import { IoSend } from 'react-icons/io5';
 import classNames from 'classnames';
-import api from '../../api'; // your axios instance
+import api from '../../api.jsx'; // your axios instance
 import { format, isToday, isYesterday, isThisWeek, parseISO } from 'date-fns';
 import User from '../../icons/User.svg';
 

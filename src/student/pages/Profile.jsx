@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Profiledb from "../components/profiledb";
-import ProfileCourses from "../components/ProfileCourses";
-import Profileteachers from "../components/profileteachers";
-import ProfileSettings from "../components/ProfileSettings";
-import Wishlist from "../components/WishList";
-import api from "../../api";
-import ChatMessenger from "../components/ChatMessenger";
-import PurchaseHistory from "../components/PurchaseHistory";
+import { useState, useEffect } from "react";
+import Profiledb from "../components/profiledb.jsx";
+import ProfileCourses from "../components/ProfileCourses.jsx";
+import Profileteachers from "../components/profileteachers.jsx";
+import ProfileSettings from "../components/ProfileSettings.jsx";
+import Wishlist from "../components/Wishlist.jsx";
+import api from "../../api.jsx";
+import ChatMessenger from "../components/ChatMessenger.jsx";
+import PurchaseHistory from "../components/PurchaseHistory.jsx";
 
 const tabs = [
   "Dashboard",

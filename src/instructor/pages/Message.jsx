@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoSend } from 'react-icons/io5';
 import classNames from 'classnames';
-import api from '../../api';
+import api from '../../api.jsx';
 import { format, isToday, isYesterday, isThisWeek, parseISO } from 'date-fns';
 import User from '../../icons/User.svg';
 import { useLocation } from 'react-router-dom';

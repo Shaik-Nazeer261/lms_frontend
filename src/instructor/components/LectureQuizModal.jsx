@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FiX, FiPlus, FiTrash } from 'react-icons/fi';
 
 const LectureQuizModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) => {

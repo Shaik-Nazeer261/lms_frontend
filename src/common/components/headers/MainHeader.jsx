@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import logo from "../../../icons/logo.svg";
+import { useEffect, useState } from "react";
 import search from "../../../icons/search.svg";
-import bell from "../../../icons/bell.svg";
-import heart from "../../../icons/heart.svg";
 import cart from "../../../icons/cart.svg";
-import caretdown from "../../../icons/caretdown.svg";
+import caretdown from "../../../icons/Caretdown.svg";
 import User from "../../../icons/User.svg";
 import { Link, NavLink } from "react-router-dom";
-import api from "../../../api"; // Adjust path if needed
+import api from "../../../api.jsx"; // Adjust path if needed
 import lmslogo from "../../../icons/lmslogo.svg";
 
 export default function Navbar() {

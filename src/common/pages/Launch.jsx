@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 import launch from '../images/launch.png'; // Replace with your 3D image
 import lmslogo from '../../icons/lmslogo.svg'; // Replace with your logo

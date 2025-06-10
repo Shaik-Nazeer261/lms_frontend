@@ -1,5 +1,5 @@
-import StudentHeader from "../components/StudentHeader";
-import StudentFooter from "../components/StudentFooter";
+import StudentHeader from "../components/StudentHeader.jsx";
+import StudentFooter from "../components/StudentFooter.jsx";
 import "../../styles/scrollbar.css";
 
 export default function StudentLayout({ children }) {

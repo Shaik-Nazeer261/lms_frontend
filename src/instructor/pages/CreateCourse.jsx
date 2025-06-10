@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import BasicInformation from '../components/BasicInformation';
-import AdvanceInformation from '../components/AdvanceInformation';
-import Curriculum from '../components/Curriculum';
-import PublishCourse from '../components/PublishCourse';
+import  { useState } from 'react';
+import BasicInformation from '../components/BasicInformation.jsx';
+import AdvanceInformation from '../components/AdvanceInformation.jsx';
+import Curriculum from '../components/Curriculum.jsx';
+import PublishCourse from '../components/PublishCourse.jsx';
 import stack from '../../icons/wstack.svg';
 import ClipboardText from '../../icons/ClipboardText.svg'
 import MonitorPlay from '../../icons/MonitorPlay.svg'

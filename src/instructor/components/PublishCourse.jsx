@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api';
+import api from '../../api.jsx';
 
 const PublishCourse = ({ goToTab, courseId }) => {
   const [welcomeMessage, setWelcomeMessage] = useState('');
@@ -9,12 +9,9 @@ const PublishCourse = ({ goToTab, courseId }) => {
     { id: 1, name: 'Username', role: 'UI/UX Designer', avatar: 'https://randomuser.me/api/portraits/men/1.jpg' },
     { id: 2, name: 'Username', role: 'UI/UX Designer', avatar: 'https://randomuser.me/api/portraits/men/2.jpg' },
   ]);
-  const [search, setSearch] = useState('');
   const navigate=useNavigate()
 
-  const handleRemoveInstructor = (id) => {
-    setInstructors(instructors.filter(ins => ins.id !== id));
-  };
+  
 
   useEffect(() => {
     if (courseId) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import logo from "../../icons/logo.svg";
 import eye from "../../icons/Eye.svg";
 import eyeSlash from "../../icons/EyeSlash.svg";
@@ -7,7 +7,7 @@ import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
 import forgot from "../images/forgot.png"; // Replace with your image path
 import { useParams, useNavigate } from "react-router-dom";
-import api from "../../api";
+import api from "../../api.jsx";
 
 const SetPassword = () => {
   const [password, setPassword] = useState("");

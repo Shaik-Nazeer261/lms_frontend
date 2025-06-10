@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../api";
+import api from "../../api.jsx";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [adminEmail, setAdminEmail] = useState("");
   const [activeCourseCount, setActiveCourseCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showReasonModal, setShowReasonModal] = useState(false);

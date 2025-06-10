@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { FiSearch, FiBell } from 'react-icons/fi';
-import api from '../../api';
+import  { useEffect, useState } from 'react';
+import { FiSearch, } from 'react-icons/fi';
+import api from '../../api.jsx';
 import Bell1 from '../../icons/Bell1.svg'; // Adjust the path as necessary
 import Bell from '../../icons/Bell.svg'; // Adjust the path as necessary
 
@@ -14,7 +14,7 @@ const Header = ({ title }) => {
     const fetchNotifs = async () => {
       try {
         const res = await api.get('/api/notifications/unread/');
-        const grouped = groupMessagesBySender(res.data);
+        const grouped =res.data;
         setNotifications(grouped);
       } catch (err) {
         console.error('Failed to fetch notifications', err);

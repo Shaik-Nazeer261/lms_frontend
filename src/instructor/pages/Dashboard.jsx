@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import {
   FaPlayCircle,
   FaClipboardCheck,
@@ -6,7 +6,7 @@ import {
   FaCalendarAlt,
   FaCreditCard
 } from 'react-icons/fa';
-import api from '../../api'; // <-- adjust path if needed
+import api from '../../api.jsx'; // <-- adjust path if needed
 import { useNavigate } from 'react-router-dom';
 
 const stats = [

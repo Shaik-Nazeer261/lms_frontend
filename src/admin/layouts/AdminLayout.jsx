@@ -1,8 +1,7 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/AdminSidebar';
-import Header from '../components/AdminHeader';
-import Footer from '../components/AdminFooter';
+import Sidebar from '../components/AdminSidebar.jsx';
+import Header from '../components/AdminHeader.jsx';
+import Footer from '../components/AdminFooter.jsx';
 
 const AdminLayout = ({ title = "Admin Panel" }) => {
   return (

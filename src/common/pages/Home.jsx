@@ -1,9 +1,8 @@
-import React from "react";
 import dashboard from "../images/dashboard.png";
 import label from "../../icons/label.svg";
 import business from "../../icons/business.svg";
 import finance from "../../icons/finance.svg";
-import it from "../../icons/it.svg";
+import it from "../../icons/It.svg";
 import personal from "../../icons/personal.svg";
 import office from "../../icons/office.svg";
 import market from "../../icons/market.svg";
@@ -14,11 +13,11 @@ import health from "../../icons/health.svg";
 import music from "../../icons/music.svg";
 import BlueArrow from "../../icons/BlueArrow.svg";
 import { useEffect, useState } from "react";
-import api from "../../api"; // Adjust the import path as necessary
-import star from "../../icons/star.svg";
-import user from "../../icons/user.svg";
+import api from "../../api.jsx"; // Adjust the import path as necessary
+import star from "../../icons/Star.svg";
+import user from "../../icons/User.svg";
 import level from "../../icons/bar-chart.svg";
-import clock from "../../icons/clock.svg";
+import clock from "../../icons/Clock.svg";
 import instructor from "../images/instructor.png";
 
 const styledCategories = [

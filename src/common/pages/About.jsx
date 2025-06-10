@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import teamImage from '../images/team.png'
 import netflix from '../../icons/netflix.svg';
@@ -9,8 +8,8 @@ import slack from '../../icons/slack.svg';
 import verizon from '../../icons/verizon.svg';
 import lexmmark from '../../icons/lexmark.svg';
 import micro from '../../icons/micro.svg';
-import users from '../../icons/users.svg';
-import notebook from '../../icons/notebook.svg';
+import users from '../../icons/Users.svg';
+import notebook from '../../icons/Notebook.svg';
 import GlobeHemisphereWest from '../../icons/GlobeHemisphereWest.svg';
 import CircleWavyCheck from '../../icons/CircleWavyCheck.svg';
 import Stack from '../../icons/Stack.svg';

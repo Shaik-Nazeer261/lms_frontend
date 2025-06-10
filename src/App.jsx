@@ -1,47 +1,46 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 // Common
-import MainLayout from "./common/layouts/MainLayout";
-import Home from "./common/pages/Home";
+import MainLayout from "./common/layouts/MainLayout.jsx";
+import Home from "./common/pages/Home.jsx";
 
 // Student
-import StudentLogin from "./student/auth/Login";
-import StudentSignup from "./student/auth/Signup";
-import StudentLayout from "./student/layouts/StudentLayout";
-import StudentDashboard from "./student/pages/Dashboard";
-import ForgotPassword from "./student/auth/ForgotPassword";
-import ResetPassword from "./student/auth/ResetPassword";
-import CourseGrid from "./common/pages/courses";
-import Cart from "./student/pages/Cart";
-import Profile from "./student/pages/Profile";
-import Profiledb from "./student/components/profiledb";
-import CourseDetails from "./student/pages/CourseDetails";
-import About from "./common/pages/About";
-import Contact from "./common/pages/Contact";
-import NotFoundPage from "./common/pages/NotFoundPage";
-import Launch from "./common/pages/Launch";
-import Career from "./common/pages/Career";
-import BecomeInstructor from "./common/pages/BecomeInstructor";
-import Layout from "./instructor/layouts/InstructorLayout";
-import MyCourses from "./instructor/pages/MyCourses";
-import CreateCourse from "./instructor/pages/CreateCourse";
-import WatchCourse from "./student/pages/WatchCourse";
-import AccountSettings from "./instructor/pages/Settings";
-import Login from "./instructor/auth/Login";
-import Dashboard from "./instructor/pages/Dashboard";
-import AdminCreateJobs from "./admin/components/AdminCreateJobs";
-import AdminJobs from "./admin/components/AdminJobs";
-import SpecificJobPage from "./common/pages/SpecificJobPage";
-import AdminApplications from "./admin/components/AdminApplications";
-import CoursePlayer from "./instructor/pages/CourseReview";
-import { FaQq } from "react-icons/fa";
-import Faqs from "./instructor/pages/Faqs";
-import PrivacyPolicy from "./instructor/pages/PrivacyPolicy";
-import Disclaimer from "./instructor/pages/Desclaimer";
-import TermsAndConditions from "./instructor/pages/Terms&Conditions";
-import Message from "./instructor/pages/Message";
-import CourseDetail from "./instructor/pages/CourseDetail";
+import StudentLogin from "./student/auth/Login.jsx";
+import StudentSignup from "./student/auth/Signup.jsx";
+import StudentLayout from "./student/layouts/StudentLayout.jsx";
+import StudentDashboard from "./student/pages/Dashboard.jsx";
+import ForgotPassword from "./student/auth/ForgotPassword.jsx";
+import ResetPassword from "./student/auth/ResetPassword.jsx";
+import CourseGrid from "./common/pages/courses.jsx";
+import Cart from "./student/pages/Cart.jsx";
+import Profile from "./student/pages/Profile.jsx";
+import Profiledb from "./student/components/profiledb.jsx";
+import CourseDetails from "./student/pages/CourseDetails.jsx";
+import About from "./common/pages/About.jsx";
+import Contact from "./common/pages/Contact.jsx";
+import NotFoundPage from "./common/pages/NotFoundPage.jsx";
+import Launch from "./common/pages/Launch.jsx";
+import Career from "./common/pages/Career.jsx";
+import BecomeInstructor from "./common/pages/BecomeInstructor.jsx";
+import Layout from "./instructor/layouts/InstructorLayout.jsx";
+import MyCourses from "./instructor/pages/MyCourses.jsx";
+import CreateCourse from "./instructor/pages/CreateCourse.jsx";
+import WatchCourse from "./student/pages/WatchCourse.jsx";
+import AccountSettings from "./instructor/pages/Settings.jsx";
+import Login from "./instructor/auth/Login.jsx";
+import Dashboard from "./instructor/pages/Dashboard.jsx";
+import AdminCreateJobs from "./admin/components/AdminCreateJobs.jsx";
+import AdminJobs from "./admin/components/AdminJobs.jsx";
+import SpecificJobPage from "./common/pages/SpecificJobPage.jsx";
+import AdminApplications from "./admin/components/AdminApplications.jsx";
+import CoursePlayer from "./instructor/pages/CourseReview.jsx";
+import Faqs from "./instructor/pages/Faqs.jsx";
+import PrivacyPolicy from "./instructor/pages/PrivacyPolicy.jsx";
+import Disclaimer from "./instructor/pages/Desclaimer.jsx";
+import TermsAndConditions from "./instructor/pages/Terms&Conditions.jsx";
+import Message from "./instructor/pages/Message.jsx";
+import CourseDetail from "./instructor/pages/CourseDetail.jsx";
 
 // Instructor
 // import InstructorLogin from "./instructor/auth/Login";
@@ -50,11 +49,11 @@ import CourseDetail from "./instructor/pages/CourseDetail";
 // import InstructorDashboard from "./instructor/pages/Dashboard";
 
 // Admin
-import AdminLogin from "./admin/auth/Login";
-import AdminLayout from "./admin/layouts/AdminLayout";
-import AdminDashboard from "./admin/pages/Dashboard";
-import AdminCourseDetail from "./admin/pages/ViewCourse";
-import NotificationPanel from "./instructor/pages/NotificationPanel";
+import AdminLogin from "./admin/auth/Login.jsx";
+import AdminLayout from "./admin/layouts/AdminLayout.jsx";
+import AdminDashboard from "./admin/pages/Dashboard.jsx";
+import AdminCourseDetail from "./admin/pages/ViewCourse.jsx";
+import NotificationPanel from "./instructor/pages/NotificationPanel.jsx";
 
 function App() {
   return (

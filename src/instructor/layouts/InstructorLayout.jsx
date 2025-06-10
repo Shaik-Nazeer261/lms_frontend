@@ -1,7 +1,6 @@
-import React from 'react';
-import Sidebar from '../components/InstructorSidebar';
-import Header from '../components/InstructorHeader';
-import Footer from '../components/InstructorFooter';
+import Sidebar from '../components/InstructorSidebar.jsx';
+import Header from '../components/InstructorHeader.jsx';
+import Footer from '../components/InstructorFooter.jsx';
 
 const Layout = ({ children, title }) => {
   return (

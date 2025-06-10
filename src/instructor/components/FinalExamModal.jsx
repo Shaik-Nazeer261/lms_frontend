@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { FiX, FiTrash, FiPlus } from "react-icons/fi";
 import mammoth from "mammoth";
 

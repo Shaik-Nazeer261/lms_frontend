@@ -1,5 +1,4 @@
-import React from 'react'
-import Profile from '../pages/Profile';
+
 import enrolled from '../../icons/enrolled.svg';
 import instructors from '../../icons/instructors.svg';
 import active from '../../icons/active.svg';
@@ -8,7 +7,7 @@ import Buttonleft from '../../icons/Buttonleft.svg';
 import Buttonright from '../../icons/Buttonright.svg';
 import { useRef } from 'react';
 import { useState, useEffect } from 'react';
-import api from '../../api'; // Adjust the import path as necessary
+import api from '../../api.jsx'; // Adjust the import path as necessary
 import { useNavigate } from 'react-router-dom';
 
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import search from "../../icons/search.svg";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import api from "../../api";
+import api from "../../api.jsx";
 import { useNavigate } from "react-router-dom";
 
 const ITEMS_PER_PAGE = 20;

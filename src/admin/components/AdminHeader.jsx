@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiSearch, FiBell } from 'react-icons/fi';
 
 const Header = ({ title }) => {

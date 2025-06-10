@@ -1,22 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import  { useRef, useState, useEffect } from "react";
 import { FaClock, FaFolderOpen, FaPlay } from "react-icons/fa";
 import {
-  FiCheckCircle,
   FiChevronDown,
   FiChevronRight,
-  FiLock,
 } from "react-icons/fi";
-import { BsFolder } from "react-icons/bs";
-import { PiPlayCircle } from "react-icons/pi";
-import { LuClock } from "react-icons/lu";
-import cert from "../../student/images/cert.png";
+
 import { useParams } from "react-router-dom";
-import api from "../../api";
+import api from "../../api.jsx";
 import unlock from "../../icons/unlock.svg";
 import lock from "../../icons/lock.svg";
-import checked from "../../icons/checked.svg";
-import unchecked from "../../icons/unchecked.svg";
-import select from "../../icons/select.svg";
 import Vector from "../../icons/Vector.svg";
 import moment from "moment";
 

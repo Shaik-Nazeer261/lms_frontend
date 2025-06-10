@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import login from "../images/login.png";
 import logo from "../../icons/logo.svg";
 import eye from "../../icons/Eye.svg";
@@ -6,7 +6,7 @@ import eyeSlash from "../../icons/EyeSlash.svg";
 import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
-import api from "../../api";
+import api from "../../api.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

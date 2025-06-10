@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import search from '../../icons/search.svg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import api from '../../api';
+import api from '../../api.jsx';
 import { useNavigate } from 'react-router-dom';
 
 

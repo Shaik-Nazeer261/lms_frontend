@@ -2,6 +2,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import importPlugin from 'eslint-plugin-import' // ✅ Import the plugin
 
 export default [
   { ignores: ['dist'] },
@@ -19,6 +20,7 @@ export default [
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'import': importPlugin, // ✅ Register the plugin
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -28,6 +30,9 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+
+      // ✅ Add case-sensitive import check
+      'import/no-unresolved': ['error', { caseSensitive: true }],
     },
   },
 ]

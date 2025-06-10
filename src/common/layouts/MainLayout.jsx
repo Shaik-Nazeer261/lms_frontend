@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
-import MainHeader from "../components/headers/MainHeader";
-import MainFooter from "../components/footers/MainFooter";
+import MainHeader from "../components/headers/MainHeader.jsx";
+import MainFooter from "../components/footers/MainFooter.jsx";
 
-import StudentHeader from "../../student/components/StudentHeader";
+import StudentHeader from "../../student/components/StudentHeader.jsx";
 // import InstructorHeader from "../../instructor/components/InstructorHeader";
 // import AdminHeader from "../../admin/components/AdminHeader";
 import '../../styles/scrollbar.css';

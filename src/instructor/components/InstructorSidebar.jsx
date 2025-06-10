@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import logo from '../../icons/wlogo.svg';

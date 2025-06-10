@@ -1,13 +1,10 @@
-import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import logo from '../../icons/wlogo.svg';
 import ChartBar from '../../icons/ChartBar.svg';
 import PlusCircle from '../../icons/PlusCircle.svg';
 import Stack from '../../icons/wstack.svg';
-import CreditCard from '../../icons/CreditCard.svg';
-import ChatCircleDots from '../../icons/ChatCircleDots.svg';
-import Gear from '../../icons/Gear.svg';
+
 
 
 const Sidebar = () => {

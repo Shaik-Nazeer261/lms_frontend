@@ -1,12 +1,12 @@
 import { FaStar, FaUser } from "react-icons/fa";
 import "../../styles/scrollbar.css";
-import faders from "../../icons/faders.svg";
+import faders from "../../icons/Faders.svg";
 import search from "../../icons/search.svg";
 import Cpu from "../../icons/Cpu.svg";
 import wcpu from "../../icons/wcpu.svg";
 
 import React, { useEffect, useState } from "react";
-import api from "../../api"; // Ensure this points to your axios instance
+import api from "../../api.jsx"; // Ensure this points to your axios instance
 import { Link } from "react-router-dom";
 
 

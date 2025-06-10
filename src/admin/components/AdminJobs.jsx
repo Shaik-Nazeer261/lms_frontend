@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal, message } from 'antd';
-import api from '../../api';
+import { Table, Button, Modal,} from 'antd';
+import api from '../../api.jsx';
 import locicon from '../../common/images/locationicon.svg'
 import jobtypeicon from '../../common/images/jobtypeicon.svg'
 import vacancyicon from '../../common/images/vacancyicon.svg'

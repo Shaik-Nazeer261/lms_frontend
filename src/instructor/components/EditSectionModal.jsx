@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 
 const EditSectionModal = ({ isOpen, onClose, sectionName, onSave }) => {
   const [name, setName] = useState(sectionName);

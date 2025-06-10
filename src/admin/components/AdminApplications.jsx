@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api";
+import api from "../../api.jsx";
 import { Table, Typography, Modal, Button } from "antd"; // Add Modal and Button
 
 const { Link } = Typography;

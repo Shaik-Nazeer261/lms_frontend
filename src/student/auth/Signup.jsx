@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import api from "../../api"; // 🔄 make sure the path is correct
+import { useState } from "react";
+import api from "../../api.jsx"; // 🔄 make sure the path is correct
 import register from "../images/register.png";
 import logo from "../../icons/logo.svg";
 import eye from "../../icons/Eye.svg";

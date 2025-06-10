@@ -1,8 +1,8 @@
-import React, { useState, useEffect, use } from 'react';
+import  { useState, useEffect, } from 'react';
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-import api from '../../api';
+import api from '../../api.jsx';
 import { useLocation } from 'react-router-dom';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal.jsx';
 import { useNavigate } from 'react-router-dom';
 
 

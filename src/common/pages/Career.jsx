@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import career from "../images/career.png";
 import Union from "../images/Union.png";
@@ -20,7 +20,7 @@ import slack from "../../icons/slack.svg";
 import verizon from "../../icons/verizon.svg";
 import lexmmark from "../../icons/lexmark.svg";
 import micro from "../../icons/micro.svg";
-import api from "../../api";
+import api from "../../api.jsx";
 import { ArrowRight, MapPin, Briefcase, Calendar } from "lucide-react";
 
 const logos = [
@@ -77,36 +77,7 @@ const perks = [
   },
 ];
 
-const jobList = [
-  {
-    title: "Product Designer (UI/UX Designer)",
-    location: "Hyderabad",
-    type: "Full-Time",
-    vacancies: "01 Vacancy",
-    deadline: "30 June, 2025",
-  },
-  {
-    title: "Social Media Manager",
-    location: "Hyderabad",
-    type: "Full-Time",
-    vacancies: "01 Vacancy",
-    deadline: "30 June, 2025",
-  },
-  {
-    title: "Director of Accounting",
-    location: "Hyderabad",
-    type: "Full-Time",
-    vacancies: "03 Vacancy",
-    deadline: "30 June, 2025",
-  },
-  {
-    title: "Principal Software Engineer",
-    location: "Hyderabad",
-    type: "Full-Time",
-    vacancies: "01 Vacancy",
-    deadline: "30 June, 2025",
-  },
-];
+
 
 const Career = () => {
   const navigate = useNavigate();

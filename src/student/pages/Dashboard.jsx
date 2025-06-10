@@ -1,4 +1,4 @@
-import Home from "../../common/pages/Home";
+import Home from "../../common/pages/Home.jsx";
 export default function StudentDashboard() {
     return (
      <Home/>

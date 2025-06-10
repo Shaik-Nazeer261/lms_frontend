@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import {
   FiPlus,
   FiTrash,
@@ -6,16 +6,16 @@ import {
   FiChevronDown,
   FiChevronUp,
 } from "react-icons/fi";
-import EditSectionModal from "./EditSectionModal";
-import LectureVideoModal from "./LectureVideoModal";
-import AttachFileModal from "./AttachFileModal";
-import LectureCaptionModal from "./LectureCaptionModal";
-import LectureDescriptionModal from "./LectureDescriptionModal";
-import LectureNotesModal from "./LectureNotesModal";
-import api from "../../api";
-import LectureQuizModal from "./LectureQuizModal";
-import FinalExamModal from "./FinalExamModal";
-import CertificateSelectionModal from "./CertificateSelectionModal";
+import EditSectionModal from "./EditSectionModal.jsx";
+import LectureVideoModal from "./LectureVideoModal.jsx";
+import AttachFileModal from "./AttachFileModal.jsx";
+import LectureCaptionModal from "./LectureCaptionModal.jsx";
+import LectureDescriptionModal from "./LectureDescriptionModal.jsx";
+import LectureNotesModal from "./LectureNotesModal.jsx";
+import api from "../../api.jsx";
+import LectureQuizModal from "./LectureQuizModal.jsx";
+import FinalExamModal from "./FinalExamModal.jsx";
+import CertificateSelectionModal from "./CertificateSelectionModal.jsx";
 
 const Curriculum = ({ goToTab, courseId }) => {
   const [sections, setSections] = useState([
@@ -36,7 +36,6 @@ const Curriculum = ({ goToTab, courseId }) => {
   const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
   const [currentSectionId, setCurrentSectionId] = useState(null);
   const [currentLectureId, setCurrentLectureId] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
   const [isFinalExamModalOpen, setIsFinalExamModalOpen] = useState(false);
 const [finalExamQuestions, setFinalExamQuestions] = useState([]);

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import upload from '../../icons/upload.svg';
-import api from '../../api';
+import api from '../../api.jsx';
 
 
 const ProfileSettings = () => {

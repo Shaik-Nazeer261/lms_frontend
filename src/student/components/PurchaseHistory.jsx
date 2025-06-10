@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { FaChevronDown, FaChevronUp, FaRegCreditCard, FaPlayCircle } from 'react-icons/fa';
-import api from '../../api';
+import api from '../../api.jsx';
 
 const PurchaseHistory = () => {
   const [history, setHistory] = useState([]);

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { FaBell, FaUserCircle } from 'react-icons/fa';
-import api from '../../api'; // adjust this path to your API file
+import  { useEffect, useState } from 'react';
+import { FaBell } from 'react-icons/fa';
+import api from '../../api.jsx'; // adjust this path to your API file
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 

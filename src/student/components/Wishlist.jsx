@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar, FaHeart } from "react-icons/fa";
-import api from "../../api"; // ✅ your axios instance
+import api from "../../api.jsx"; // ✅ your axios instance
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);

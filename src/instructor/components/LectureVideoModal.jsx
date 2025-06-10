@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 
 const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) => {
   const [videoFile, setVideoFile] = useState(null);

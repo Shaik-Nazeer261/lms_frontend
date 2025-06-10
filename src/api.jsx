@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/", // Change this if your backend is different
+  baseURL: "https://lms-backend-9yjq.onrender.com", // Change this if your backend is different
   // headers: {
   //   "Content-Type": "application/json",
   // },
@@ -45,7 +45,7 @@ api.interceptors.response.use(
         }
 
         // Request a new access token
-        const { data } = await axios.post("http://127.0.0.1:8000/api/token/refresh/", {
+        const { data } = await axios.post("https://lms-backend-9yjq.onrender.com/api/token/refresh/", {
           refresh: refreshToken,
         });
 

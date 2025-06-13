@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import login from "../images/login.png";
 import logo from "../../icons/logo.svg";
 import eye from "../../icons/Eye.svg";
@@ -13,6 +13,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const passwordInputRef = useRef(null); // Add this line
+
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -93,6 +95,12 @@ const Login = () => {
     placeholder="Enter your username"
     value={formData.username}
     onChange={handleChange}
+    onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      passwordInputRef.current?.focus();  // Focus password input
+    }
+  }}
     className="w-full border border-black rounded px-3 py-2 mt-2 text-gray-800"
     required
   />
@@ -112,6 +120,7 @@ const Login = () => {
   placeholder="Enter password"
   value={formData.password}
   onChange={handleChange}
+  ref={passwordInputRef}  // Attach ref here
   className="w-full border border-black rounded px-3 py-2 mt-2 pr-10 text-gray-800"
 />
 

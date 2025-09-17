@@ -1,18 +1,29 @@
-import  { useState, useEffect } from 'react';
-import { FiX } from 'react-icons/fi';
+import React, { useState, useEffect } from "react";
+import { FiX } from "react-icons/fi";
 
-const LectureDescriptionModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) => {
-  const [description, setDescription] = useState('');
+const LectureDescriptionModal = ({
+  isOpen,
+  onClose,
+  onSave,
+  sectionId,
+  lectureId,
+  existingDescription, // ✅ New prop to prefill data
+}) => {
+  const [description, setDescription] = useState("");
 
+  // Prefill when modal opens
   useEffect(() => {
-    if (isOpen) setDescription('');
-  }, [isOpen]);
+    if (isOpen) {
+      setDescription(existingDescription || "");
+    }
+  }, [isOpen, existingDescription]);
 
   const handleSave = () => {
-    if (description.trim()) {
-      onSave(description, sectionId, lectureId);  // ✅ Pass IDs back
-      onClose();
-    }
+    if (!description.trim()) return;
+
+    // ✅ Send updated description back to parent
+    onSave(description, sectionId, lectureId);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -20,7 +31,7 @@ const LectureDescriptionModal = ({ isOpen, onClose, onSave, sectionId, lectureId
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000080]">
       <div className="bg-white w-full max-w-xl shadow-lg p-6 relative">
-        {/* Close icon */}
+        {/* Close Icon */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -28,10 +39,14 @@ const LectureDescriptionModal = ({ isOpen, onClose, onSave, sectionId, lectureId
           <FiX size={20} />
         </button>
 
-        <h2 className="font-semibold text-[#00113D] mb-4">Add Lecture Description</h2>
+        <h2 className="font-semibold text-[#00113D] mb-4">
+          Add Lecture Description
+        </h2>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Description
+          </label>
           <textarea
             rows={4}
             className="w-full border border-gray-300 rounded-md p-3 resize-none"
@@ -53,11 +68,11 @@ const LectureDescriptionModal = ({ isOpen, onClose, onSave, sectionId, lectureId
             disabled={!description.trim()}
             className={`px-6 py-2 rounded text-white font-medium ${
               description.trim()
-                ? 'bg-blue-600 hover:bg-blue-700'
-                : 'bg-blue-100 cursor-not-allowed'
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-blue-100 cursor-not-allowed"
             }`}
           >
-            Add Description
+            Save Description
           </button>
         </div>
       </div>

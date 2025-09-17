@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import upload from '../../icons/upload.svg';
-import api from '../../api.jsx';
+import api from '../../api';
 
 
 const ProfileSettings = () => {
@@ -102,7 +102,7 @@ console.log(`${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}`)
     imageFile
       ? URL.createObjectURL(imageFile)
       : profile.profile_picture
-        ? `${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}`
+        ? `${import.meta.env.VITE_BACKEND_URL}/api${profile.profile_picture}`
         : 'https://via.placeholder.com/150'
   }
   alt="User"
@@ -155,7 +155,7 @@ console.log(`${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}`)
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <label className="text-sm font-medium text-[#00113D] block mb-1">Username</label>
             <input
               type="text"
@@ -165,7 +165,7 @@ console.log(`${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}`)
               onChange={handleChange}
               className="w-full border border-gray-300 px-3 py-2 rounded"
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="text-sm font-medium text-[#00113D] block mb-1">Email</label>

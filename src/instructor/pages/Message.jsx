@@ -1,8 +1,8 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoSend } from 'react-icons/io5';
 import classNames from 'classnames';
-import api from '../../api.jsx';
+import api from '../../api';
 import { format, isToday, isYesterday, isThisWeek, parseISO } from 'date-fns';
 import User from '../../icons/User.svg';
 import { useLocation } from 'react-router-dom';
@@ -110,7 +110,7 @@ useEffect(() => {
               onClick={() => setSelectedContact(user)}
             >
               <img
-                src={user.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}${user.profile_picture}` : User}
+                src={user.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}/api${user.profile_picture}` : User}
                 alt={user.username}
                 className="w-10 h-10 rounded-full"
               />
@@ -140,7 +140,7 @@ useEffect(() => {
             <div className="flex items-center justify-between p-4 border-b bg-white">
               <div className="flex items-center gap-3">
                 <img
-                  src={selectedContact.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}${selectedContact.profile_picture}` : User}
+                  src={selectedContact.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}/api${selectedContact.profile_picture}` : User}
                   className="w-10 h-10 rounded-full"
                   alt={selectedContact.username}
                 />
@@ -154,14 +154,14 @@ useEffect(() => {
             <div className="flex-1 p-6 overflow-y-auto space-y-4">
               <p className="text-center text-sm text-gray-400">Today</p>
               {chats.map(msg => {
-                const isMe = msg.sender_username !== selectedContact.username;
+                const isMe = msg.sender_name !== selectedContact.username;
                 return (
                   <div key={msg.id} className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-4 px-2`}>
                     <div className="flex flex-col items-start max-w-xs">
                       <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
                         {!isMe && (
                           <img
-                            src={selectedContact.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}${selectedContact.profile_picture}` : User}
+                            src={selectedContact.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}/api${selectedContact.profile_picture}` : User}
                             className="w-5 h-5 rounded-full"
                           />
                         )}

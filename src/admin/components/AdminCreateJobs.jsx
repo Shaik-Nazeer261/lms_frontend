@@ -1,6 +1,6 @@
-import  { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import JoditEditor from "jodit-react";
-import api from "../../api.jsx";
+import api from "../../api";
 
 const AdminCreateJobs = () => {
   const editor = useRef(null);

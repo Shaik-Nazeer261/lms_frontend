@@ -1,8 +1,9 @@
+import React from "react";
 import dashboard from "../images/dashboard.png";
 import label from "../../icons/label.svg";
 import business from "../../icons/business.svg";
 import finance from "../../icons/finance.svg";
-import it from "../../icons/It.svg";
+import it from "../../icons/it.svg";
 import personal from "../../icons/personal.svg";
 import office from "../../icons/office.svg";
 import market from "../../icons/market.svg";
@@ -13,12 +14,13 @@ import health from "../../icons/health.svg";
 import music from "../../icons/music.svg";
 import BlueArrow from "../../icons/BlueArrow.svg";
 import { useEffect, useState } from "react";
-import api from "../../api.jsx"; // Adjust the import path as necessary
-import star from "../../icons/Star.svg";
-import user from "../../icons/User.svg";
+import api from "../../api"; // Adjust the import path as necessary
+import star from "../../icons/star.svg";
+import user from "../../icons/user.svg";
 import level from "../../icons/bar-chart.svg";
-import clock from "../../icons/Clock.svg";
+import clock from "../../icons/clock.svg";
 import instructor from "../images/instructor.png";
+import { useNavigate } from "react-router-dom";
 
 const styledCategories = [
   { name: "Academic Subjects", icon: label, bg: "bg-indigo-100" },
@@ -69,6 +71,7 @@ const content = {
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -381,7 +384,9 @@ Explore high-impact learning for today’s world.
                     )
                   )}
                 </div>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300">
+                <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
+                onClick={() => navigate("/courses")}
+                >
                   Browse All Course →
                 </button>
               </div>
@@ -538,14 +543,14 @@ Explore high-impact learning for today’s world.
                     className={`w-30 h-30 ${instructor.bgColor} rounded-full mx-auto mb-5 flex items-center justify-center overflow-hidden`}
                   >
                     <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}${obj.instructor.profile_picture}`}
-                      alt={obj.instructor.user.username}
+                      src={`${import.meta.env.VITE_BACKEND_URL}/api${obj.instructor.profile_picture}`}
+                      alt={obj.instructor.user.first_name}
                       className="w-25 h-25 rounded-full object-cover"
                     />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-1 text-gray-800">
-                      {obj.instructor.user.username}
+                      {obj.instructor.user.first_name} {obj.instructor.user.last_name}
                     </h3>
                     <p className="text-gray-500 mb-4 text-sm">
                       {obj.instructor.headline}

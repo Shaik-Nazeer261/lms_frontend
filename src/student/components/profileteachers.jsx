@@ -1,6 +1,7 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import search from '../../icons/search.svg';
 import { FaArrowLeft, FaArrowRight, FaStar } from 'react-icons/fa';
-import api from '../../api.jsx'; // your configured Axios instance
+import api from '../../api'; // your configured Axios instance
 
 const ITEMS_PER_PAGE = 20;
 
@@ -54,7 +55,7 @@ const [messageText, setMessageText] = useState("");
         {paginatedInstructors.map((instructor) => (
           <div key={instructor.id} className="shadow rounded overflow-hidden text-center">
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL}${instructor.profile_picture}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/api${instructor.profile_picture}`}
               alt={instructor.name}
               className="w-full h-64 object-cover"
             />

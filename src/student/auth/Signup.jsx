@@ -1,18 +1,18 @@
-import { useState } from "react";
-import api from "../../api.jsx"; // 🔄 make sure the path is correct
+import React, { useState } from "react";
+import api from "../../api"; // 🔄 make sure the path is correct
 import register from "../images/register.png";
 import logo from "../../icons/logo.svg";
-import eye from "../../icons/Eye.svg";
+import eye from "../../icons/eye.svg";
 import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
 import EyeSlash from "../../icons/EyeSlash.svg";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
-    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -39,7 +39,6 @@ const Signup = () => {
       await api.post("/api/student-register/", {
         first_name: formData.first_name,
         last_name: formData.last_name,
-        username: formData.username,
         email: formData.email,
         password: formData.password,
       });
@@ -68,11 +67,14 @@ const Signup = () => {
           <div className="flex items-center justify-center">
             <div className="w-full ">
               <div className="text-center mb-6">
-                <img src={logo} alt="Logo" className="mx-auto h-20 " />
+               <Link to="/">
+                <img src={logo} alt="Logo" className="mx-auto w-32 mb-2 cursor-pointer" />
+               </Link>
+                {/* <img src={logo} alt="Logo" className="mx-auto h-20 " /> */}
                 <h2 className="text-3xl font-bold mt-2">Create your account</h2>
               </div>
 
-              {/* ✅ FORM START */}
+              {/*  FORM START */}
               <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="flex gap-4">
                   <div className="w-1/2">
@@ -99,7 +101,7 @@ const Signup = () => {
                   </div>
                 </div>
 
-                <label className="block text-sm text-gray-600 mb-1">
+                {/* <label className="block text-sm text-gray-600 mb-1">
                   Username
                 </label>
                 <input
@@ -109,7 +111,7 @@ const Signup = () => {
                   className="w-full h-10 border border-gray-200 p-3 rounded"
                   onChange={handleChange}
                   required
-                />
+                /> */}
 
                 <label className="block text-sm text-gray-600 mb-1">
                   Email
@@ -189,7 +191,7 @@ const Signup = () => {
                   </button>
                 </div>
               </form>
-              {/* ✅ FORM END */}
+              {/*  FORM END */}
 
               <div className="my-6 text-center text-xs text-gray-400">
                 SIGN UP WITH

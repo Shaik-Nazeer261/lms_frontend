@@ -1,11 +1,16 @@
-import  { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FiX } from "react-icons/fi";
 import JoditEditor from "jodit-react";
 import html2canvas from "html2canvas";
-import api from "../../api.jsx";
+import api from "../../api";
 import { v4 as uuidv4 } from "uuid"; // Add this if not imported
 
-
+const placeholders = [
+  { label: "Student Name", tag: "{student_name}" },
+  { label: "Course Title", tag: "{course_title}" },
+  { label: "Instructor Name", tag: "{instructor_name}" },
+  { label: "Date", tag: "{date}" },
+];
 
 const predefinedTemplates = [
   {
@@ -35,7 +40,7 @@ const predefinedTemplates = [
 ];
 
 
-const CertificateSelectionModal = ({ isOpen, onClose, courseId }) => {
+const CertificateSelectionModal = ({ isOpen, onClose, courseId, onAssign }) => {
   const [templates, setTemplates] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
   const [newName, setNewName] = useState("");

@@ -1,16 +1,20 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
+import { Meta } from 'react-router-dom';
 
-const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) => {
+const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId, existingNotes }) => {
   const [noteText, setNoteText] = useState('');
   const [attachedFile, setAttachedFile] = useState(null);
 
+  // Prefill notes and file if available
   useEffect(() => {
-    if (isOpen) {
-      setNoteText('');
-      setAttachedFile(null);
-    }
-  }, [isOpen]);
+  if (isOpen) {
+    setNoteText(existingNotes?.noteText || '');
+    setAttachedFile(existingNotes?.attachedFile || null);
+  }
+  // ✅ Run only when modal opens, not when selecting a file
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [isOpen]);
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
@@ -21,7 +25,7 @@ const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) =>
 
   const handleSave = () => {
     if (noteText.trim() || attachedFile) {
-      onSave({ noteText, attachedFile }, sectionId, lectureId);  // ✅ pass context
+      onSave({ noteText, attachedFile }, sectionId, lectureId);  // ✅ Pass updated data
       onClose();
     }
   };
@@ -31,7 +35,7 @@ const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) =>
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000080]">
       <div className="bg-white w-full max-w-xl shadow-lg p-6 relative">
-        {/* Header */}
+        {/* Close icon */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -39,7 +43,9 @@ const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) =>
           <FiX size={20} />
         </button>
 
-        <h2 className="font-semibold text-[#00113D] mb-4">Add Lecture Notes</h2>
+        <h2 className="font-semibold text-[#00113D] mb-4">
+          {existingNotes?.noteText || existingNotes?.attachedFile ? 'Edit Lecture Notes' : 'Add Lecture Notes'}
+        </h2>
 
         {/* Notes Textarea */}
         <div className="mb-6">
@@ -64,8 +70,17 @@ const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) =>
               onChange={handleFileChange}
             />
           </label>
-          {attachedFile && (
+
+          {/* Show existing uploaded file */}
+          {attachedFile && typeof attachedFile === 'object' && (
             <p className="mt-2 text-sm text-green-600">📄 {attachedFile.name}</p>
+          )}
+          {attachedFile && typeof attachedFile === 'string' && (
+            <p className="mt-2 text-sm text-blue-600 underline cursor-pointer">
+              <a href={`${import.meta.env.VITE_BACKEND_URL}/api/media/${attachedFile}`} target="_blank" rel="noopener noreferrer">
+                📄 View Existing Notes
+              </a>
+            </p>
           )}
         </div>
 
@@ -86,7 +101,7 @@ const LectureNotesModal = ({ isOpen, onClose, onSave, sectionId, lectureId }) =>
             }`}
             disabled={!noteText.trim() && !attachedFile}
           >
-            Add Notes
+            {existingNotes?.noteText || existingNotes?.attachedFile ? 'Update Notes' : 'Add Notes'}
           </button>
         </div>
       </div>

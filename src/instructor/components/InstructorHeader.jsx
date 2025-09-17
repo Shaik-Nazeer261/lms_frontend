@@ -1,8 +1,9 @@
-import  { useEffect, useState } from 'react';
-import { FiSearch, } from 'react-icons/fi';
-import api from '../../api.jsx';
+import React, { useEffect, useState } from 'react';
+import { FiSearch, FiBell } from 'react-icons/fi';
+import api from '../../api';
 import Bell1 from '../../icons/Bell1.svg'; // Adjust the path as necessary
 import Bell from '../../icons/Bell.svg'; // Adjust the path as necessary
+import User from '../../icons/User.svg'; // Default user icon
 
 const Header = ({ title }) => {
 
@@ -14,7 +15,7 @@ const Header = ({ title }) => {
     const fetchNotifs = async () => {
       try {
         const res = await api.get('/api/notifications/unread/');
-        const grouped =res.data;
+        const grouped = groupMessagesBySender(res.data);
         setNotifications(grouped);
       } catch (err) {
         console.error('Failed to fetch notifications', err);
@@ -73,15 +74,16 @@ const Header = ({ title }) => {
 
         {/* Avatar */}
         {instructor?.profile_picture ? (
- <img
-  src={`${import.meta.env.VITE_BACKEND_URL}${instructor.profile_picture}`}
-  alt={instructor.user?.username || "Instructor"}
+<img
+  src={
+    instructor.profile_picture
+      ? `${import.meta.env.VITE_BACKEND_URL}/api${instructor.profile_picture}`
+      : User
+  }
+  alt={instructor.user?.first_name || "Instructor"}
   className="w-9 h-9 rounded-full object-cover"
-  onError={(e) => {
-    e.target.onerror = null;
-    e.target.src = "https://via.placeholder.com/36"; // fallback image
-  }}
 />
+
 
 ) : (
   <div className="w-9 h-9 rounded-full bg-gray-300" />

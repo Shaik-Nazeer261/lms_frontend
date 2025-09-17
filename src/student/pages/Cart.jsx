@@ -1,7 +1,8 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
-import api from '../../api.jsx';
+import axios from 'axios';
+import api from '../../api';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);

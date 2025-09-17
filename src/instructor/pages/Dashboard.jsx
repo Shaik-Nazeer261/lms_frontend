@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaPlayCircle,
   FaClipboardCheck,
@@ -6,7 +6,7 @@ import {
   FaCalendarAlt,
   FaCreditCard
 } from 'react-icons/fa';
-import api from '../../api.jsx'; // <-- adjust path if needed
+import api from '../../api'; // <-- adjust path if needed
 import { useNavigate } from 'react-router-dom';
 
 const stats = [
@@ -86,12 +86,12 @@ const Dashboard = () => {
           {/* Left: Avatar and Info */}
           <div className="flex items-center gap-4">
             <img
-              src={profile.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}` : 'https://via.placeholder.com/150'}
+              src={profile.profile_picture ? `${import.meta.env.VITE_BACKEND_URL}/api${profile.profile_picture}` : 'https://via.placeholder.com/150'}
               alt="Profile"
               className="w-14 h-14 rounded-full object-cover"
             />
             <div>
-              <p className="font-semibold text-lg">{profile.user.username}</p>
+              <p className="font-semibold text-lg">{profile.user.first_name} {profile.user.last_name}</p>
               <p className="text-sm text-gray-300">{profile.user.email}</p>
             </div>
           </div>

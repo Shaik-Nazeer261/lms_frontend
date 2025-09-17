@@ -1,7 +1,9 @@
+import React from "react";
 import { FaStar, FaPlayCircle } from "react-icons/fa";
+import { HiOutlineChevronDown } from "react-icons/hi";
 import { useState } from "react";
 import { useEffect } from "react";
-import api from "../../api.jsx";
+import api from "../../api";
 import { useParams } from "react-router-dom";
 import {
   FaClock,
@@ -157,7 +159,7 @@ const CourseDetails = () => {
         <div className="text-sm text-gray-600 mb-4 flex justify-between">
           <div>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL}${
+              src={`${import.meta.env.VITE_BACKEND_URL}/api${
                 courseData?.instructor.profile_picture
               }`}
               className="w-10 h-10 inline-block rounded-3xl mr-1"
@@ -175,7 +177,7 @@ const CourseDetails = () => {
         <div className="mb-6">
           {courseData?.demo_video ? (
             <video
-              src={`${import.meta.env.VITE_BACKEND_URL}${
+              src={`${import.meta.env.VITE_BACKEND_URL}/api${
                 courseData.demo_video
               }`}
               controls

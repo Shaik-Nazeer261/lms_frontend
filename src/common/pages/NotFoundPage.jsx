@@ -1,3 +1,4 @@
+import React from 'react';
 import error from '../images/error.png'; 
 
 const NotFoundPage = () => {

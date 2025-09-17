@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import search from "../../icons/search.svg";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import api from "../../api.jsx";
+import api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 const ITEMS_PER_PAGE = 20;
@@ -258,52 +258,53 @@ const handleUndoDelete = async () => {
                   ₹{parseFloat(course.price || 0).toFixed(2)}
                 </span>
 
-                <div className="relative">
-                  <button
-                    onClick={() =>
-                      setActiveDropdown(
-                        activeDropdown === course.id ? null : course.id
-                      )
-                    }
-                    className="text-gray-500 hover:text-gray-700 focus:outline-none"
-                  >
-                    ⋯
-                  </button>
+{course.is_published && (
+  <div className="relative">
+    <button
+      onClick={() =>
+        setActiveDropdown(
+          activeDropdown === course.id ? null : course.id
+        )
+      }
+      className="text-gray-500 hover:text-gray-700 focus:outline-none"
+    >
+      ⋯
+    </button>
 
-                  {activeDropdown === course.id && (
-                    <div className="absolute bottom-full mt-2 w-40 bg-white border border-gray-200 shadow-md rounded z-[999]">
-                      <button
-                        className="w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                        onClick={() =>
-                          navigate(`/instructor/course-details/${course.id}`)
-                        }
-                      >
-                        View Details
-                      </button>
-                      <button
-                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={() => {
-                          console.log("Edit", course.id);
-                          navigate("/instructor/create_course", {
-                            state: {
-                              courseId: course.id,
-                              activeTab: "basic", // or 'advance', 'curriculum', etc.
-                            },
-                          });
-                        }}
-                      >
-                        Edit Course
-                      </button>
-                     <button
-  className="w-full text-left px-4 py-2 text-sm hover:bg-red-100"
-  onClick={() => handleDeleteCourse(course.id)}
->
-  Delete Course
-</button>
+    {activeDropdown === course.id && (
+      <div className="absolute bottom-full mt-2 w-40 bg-white border border-gray-200 shadow-md rounded z-[999]">
+        <button
+          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+          onClick={() =>
+            navigate(`/instructor/course-details/${course.id}`)
+          }
+        >
+          View Details
+        </button>
+        <button
+          className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+          onClick={() => {
+            navigate("/instructor/create_course", {
+              state: {
+                courseId: course.id,
+                activeTab: "basic",
+              },
+            });
+          }}
+        >
+          Edit Course
+        </button>
+        <button
+          className="w-full text-left px-4 py-2 text-sm hover:bg-red-100"
+          onClick={() => handleDeleteCourse(course.id)}
+        >
+          Delete Course
+        </button>
+      </div>
+    )}
+  </div>
+)}
 
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           </div>

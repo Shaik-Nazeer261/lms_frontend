@@ -1,63 +1,69 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "https://lms-backend-9yjq.onrender.com", // Change this if your backend is different
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
-});
+// Detect subdomain from browser
+const hostnameParts = window.location.hostname.split('.');
+let subdomain = null;
 
-// Request Interceptor to attach Authorization Header
+// Localhost subdomains: company1.localhost:5173
+if (hostnameParts.includes("localhost")) {
+  if (hostnameParts.length === 2) {
+    subdomain = hostnameParts[0]; // company1
+  }
+} else if (hostnameParts.length > 2) {
+  // Production: company1.galearninghub.in
+  subdomain = hostnameParts[0];
+}
+
+// Construct baseURL dynamically
+let baseURL = import.meta.env.VITE_BACKEND_URL; // default for localhost
+
+if (subdomain && !window.location.hostname.includes("localhost")) {
+  // Production subdomain
+  const baseDomain = import.meta.env.VITE_BASE_DOMAIN; // galearninghub.in
+  baseURL = `https://${subdomain}.${baseDomain}/api`;
+}
+
+const api = axios.create({ baseURL });
+
+// Request interceptor → attach token
 api.interceptors.request.use(
-  async (config) => {
+  (config) => {
     const token = localStorage.getItem("access");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+    if (token) config.headers["Authorization"] = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// Response Interceptor to refresh the token if expired
+// Response interceptor → handle token refresh
 api.interceptors.response.use(
-  (response) => response, // If response is OK, return it
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // If token is expired and we haven't retried yet
     if (
       error.response?.status === 401 &&
       error.response.data?.code === "token_not_valid" &&
       !originalRequest._retry
     ) {
-      originalRequest._retry = true; // Prevent infinite loops
+      originalRequest._retry = true;
 
       try {
         const refreshToken = localStorage.getItem("refresh");
-
         if (!refreshToken) {
-          console.error("No refresh token found. User must log in again.");
-          alert("Session expired. Please log in again.");
           localStorage.clear();
-          window.location.href = "/"; // Redirect to login
+          window.location.href = "/";
           return Promise.reject(error);
         }
 
-        // Request a new access token
-        const { data } = await axios.post("https://lms-backend-9yjq.onrender.com/api/token/refresh/", {
+        const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/token/refresh/`, {
           refresh: refreshToken,
         });
 
-        // Save the new access token
         localStorage.setItem("access", data.access);
         originalRequest.headers["Authorization"] = `Bearer ${data.access}`;
-
-        // Retry the original request
         return api(originalRequest);
       } catch (refreshError) {
-        console.error("Token refresh failed:", refreshError);
-        alert("Session expired. Please log in again.");
         localStorage.clear();
         window.location.href = "/";
         return Promise.reject(refreshError);

@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiX, FiTrash, FiPlus } from "react-icons/fi";
 import mammoth from "mammoth";
 
@@ -144,7 +144,7 @@ const FinalExamModal = ({ isOpen, onClose, onSave }) => {
             Final Exam - Add Questions
           </h2>
 
-          {/*<div className="mb-4">
+          <div className="mb-4">
             <label className="block font-semibold mb-1">
               Upload Exam File (PDF/DOCX)
             </label>
@@ -154,7 +154,7 @@ const FinalExamModal = ({ isOpen, onClose, onSave }) => {
               onChange={(e) => handleFileRead(e.target.files[0])}
               className="w-full"
             />
-          </div>*/}
+          </div>
 
           {questions.map((q, qIndex) => (
             <div

@@ -1,38 +1,61 @@
-import  { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) => {
+const LectureVideoModal = ({
+  isOpen,
+  onClose,
+  onUpload,
+  sectionId,
+  lectureId,
+  existingVideo, // ✅ NEW PROP
+}) => {
   const [videoFile, setVideoFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [videoDuration, setVideoDuration] = useState(null);
   const fileInputRef = useRef();
 
+  // ✅ Handle when modal opens
   useEffect(() => {
-    if (isOpen) {
-      setVideoFile(null);
+  if (isOpen) {
+    if (existingVideo) {
+      setPreviewURL(existingVideo); // backend path
+      setVideoFile(null); // allow replacement
+      calculateVideoDuration(`${import.meta.env.VITE_BACKEND_URL}/api/media/${existingVideo}`);
+    } else {
       setPreviewURL(null);
+      setVideoFile(null);
       setVideoDuration(null);
     }
-  }, [isOpen]);
+  }
+}, [isOpen, existingVideo]);
 
+
+  // ✅ Calculate video duration
+  const calculateVideoDuration = (videoSrc) => {
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.src = videoSrc;
+    video.onloadedmetadata = () => {
+      const seconds = Math.floor(video.duration);
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      setVideoDuration(
+        `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`
+      );
+    };
+  };
+
+  // ✅ When user selects file
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setVideoFile(file);
       const videoURL = URL.createObjectURL(file);
       setPreviewURL(videoURL);
-
-      const video = document.createElement('video');
-      video.preload = 'metadata';
-      video.src = videoURL;
-      video.onloadedmetadata = () => {
-        const seconds = Math.floor(video.duration);
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        setVideoDuration(`${minutes}:${remainingSeconds.toString().padStart(2, '0')}`);
-      };
+      calculateVideoDuration(videoURL);
     }
   };
 
+  // ✅ Handle drag & drop
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -41,6 +64,7 @@ const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) 
     }
   };
 
+  // ✅ Upload the video
   const handleUpload = () => {
     if (videoFile) {
       onUpload(videoFile, sectionId, lectureId);
@@ -48,15 +72,23 @@ const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) 
     }
   };
 
+  // ✅ Close modal if not open
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-[#00000080] z-50 flex items-center justify-center">
-      <div className="bg-white w-full max-w-xl p-6 relative">
+      <div className="bg-white w-full max-w-xl p-6 relative rounded-md shadow-lg">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-bold text-[#00113D]">Upload Lecture Video</h2>
-          <button onClick={onClose} className="text-gray-500 text-xl hover:text-gray-700">&times;</button>
+          <h2 className="text-lg font-bold text-[#00113D]">
+            Upload Lecture Video
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-gray-500 text-xl hover:text-gray-700"
+          >
+            &times;
+          </button>
         </div>
 
         {/* Drop Zone */}
@@ -69,22 +101,42 @@ const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) 
           {previewURL ? (
             <>
               <video
-                src={previewURL}
-                className="w-40 h-28 object-cover rounded-md mb-2"
-                controls={false}
-                muted
-              />
-              <p className="font-medium text-blue-700">{videoFile?.name}</p>
+  src={
+    typeof previewURL === "string" && previewURL.startsWith("blob:")
+      ? previewURL // newly uploaded file (blob URL)
+      : typeof previewURL === "string"
+      ? `${import.meta.env.VITE_BACKEND_URL}/api/media/${previewURL}` // backend file
+      : "" // fallback if null
+  }
+  className="w-40 h-28 object-cover rounded-md mb-2"
+  controls={false}
+  
+/>
+
+
+              <p className="font-medium text-blue-700">
+  {videoFile?.name || (typeof existingVideo === "string" ? existingVideo.split("/").pop() : "Existing Video")}
+</p>
+
               {videoDuration && (
-                <p className="text-xs text-gray-500 mt-1">Duration: {videoDuration}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Duration: {videoDuration}
+                </p>
               )}
-              <p className="text-xs text-gray-500 mt-1">Click to change or drop another video</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Click to change or drop another video
+              </p>
             </>
           ) : (
             <>
-              <p className="text-md font-semibold text-[#00113D] mb-1">Upload Video</p>
+              <p className="text-md font-semibold text-[#00113D] mb-1">
+                Upload Video
+              </p>
               <p className="text-sm text-gray-500">
-                Drag and drop a file or <span className="font-medium text-gray-600 underline">browse</span>
+                Drag and drop a file or{" "}
+                <span className="font-medium text-gray-600 underline">
+                  browse
+                </span>
               </p>
             </>
           )}
@@ -109,7 +161,9 @@ const LectureVideoModal = ({ isOpen, onClose, onUpload, sectionId, lectureId }) 
             onClick={handleUpload}
             disabled={!videoFile}
             className={`px-6 py-2 font-semibold text-white rounded ${
-              videoFile ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-100 cursor-not-allowed'
+              videoFile
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-blue-100 cursor-not-allowed"
             }`}
           >
             Upload Video

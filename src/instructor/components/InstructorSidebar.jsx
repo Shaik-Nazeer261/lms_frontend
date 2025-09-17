@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import logo from '../../icons/wlogo.svg';
@@ -7,6 +8,8 @@ import Stack from '../../icons/wstack.svg';
 import CreditCard from '../../icons/CreditCard.svg';
 import ChatCircleDots from '../../icons/ChatCircleDots.svg';
 import Gear from '../../icons/Gear.svg';
+import list from '../../icons/list.svg';
+import wapprovals from '../../icons/wapprovals.svg';
 
 
 const handleLogout = () => {
@@ -33,8 +36,14 @@ const Sidebar = () => {
           <NavLink to="/instructor/my_courses" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
             <img src={Stack}/>  My Courses
           </NavLink>
-          <NavLink to="/earning" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
+          <NavLink to="/instructor/approvals" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
+            <img src={wapprovals}/>  Approvals
+          </NavLink>
+          {/* <NavLink to="/earning" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
             <img src={CreditCard}/>  Earning
+          </NavLink> */}
+          <NavLink to="/instructor/assessments" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
+            <img src={list}/>  Assessments
           </NavLink>
           <NavLink to="/instructor/messages" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 relative ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
             <img src={ChatCircleDots}/>  Message

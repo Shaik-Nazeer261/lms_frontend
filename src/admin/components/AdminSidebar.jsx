@@ -1,10 +1,14 @@
+import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import logo from '../../icons/wlogo.svg';
 import ChartBar from '../../icons/ChartBar.svg';
 import PlusCircle from '../../icons/PlusCircle.svg';
 import Stack from '../../icons/wstack.svg';
-
+import CreditCard from '../../icons/CreditCard.svg';
+import ChatCircleDots from '../../icons/ChatCircleDots.svg';
+import Gear from '../../icons/Gear.svg';
+import wapprovals from '../../icons/wapprovals.svg';
 
 
 const Sidebar = () => {
@@ -29,6 +33,10 @@ const handleLogout = () => {
 
           <NavLink to="/admin/dashboard" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
             <img src={ChartBar}/> Dashboard
+          </NavLink>
+
+          <NavLink to="/admin/approvals" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>
+            <img src={wapprovals}/> Approvals
           </NavLink>
 
           <NavLink to="/admin/createjob" className={({ isActive }) => `flex items-center px-3 py-2 rounded gap-4 ${isActive ? 'bg-blue-500 text-white' : 'text-gray-400 hover:text-white hover:bg-blue-600'}`}>

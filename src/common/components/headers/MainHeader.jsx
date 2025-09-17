@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import logo from "../../../icons/logo.svg";
 import search from "../../../icons/search.svg";
+import bell from "../../../icons/bell.svg";
+import heart from "../../../icons/heart.svg";
 import cart from "../../../icons/cart.svg";
-import caretdown from "../../../icons/CaretDown.svg";
+import caretdown from "../../../icons/caretdown.svg";
 import User from "../../../icons/User.svg";
 import { Link, NavLink } from "react-router-dom";
-import api from "../../../api.jsx"; // Adjust path if needed
+import api from "../../../api"; // Adjust path if needed
 import lmslogo from "../../../icons/lmslogo.svg";
 
 export default function Navbar() {
@@ -28,7 +31,7 @@ export default function Navbar() {
       .get(endpoint)
       .then((res) => {
         if (res.data.profile_picture) {
-          setProfileImage(`${import.meta.env.VITE_BACKEND_URL}${res.data.profile_picture}`);
+          setProfileImage(`${import.meta.env.VITE_BACKEND_URL}/api${res.data.profile_picture}`);
         }
       })
       .catch((err) => {

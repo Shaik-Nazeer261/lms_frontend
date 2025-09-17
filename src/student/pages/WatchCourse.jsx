@@ -1,11 +1,17 @@
-import  { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, use } from "react";
 import { FaClock, FaFolderOpen, FaPlay } from "react-icons/fa";
 import {
+  FiCheckCircle,
   FiChevronDown,
   FiChevronRight,
+  FiLock,
 } from "react-icons/fi";
-import { useParams } from "react-router-dom";
-import api from "../../api.jsx";
+import { BsFolder } from "react-icons/bs";
+import { PiPlayCircle } from "react-icons/pi";
+import { LuClock } from "react-icons/lu";
+import cert from "../images/cert.png";
+import { useNavigate, useParams } from "react-router-dom";
+import api from "../../api";
 import unlock from "../../icons/unlock.svg";
 import lock from "../../icons/lock.svg";
 import checked from "../../icons/checked.svg";
@@ -34,6 +40,7 @@ const WatchCourse = () => {
   const [showReviewPopup, setShowReviewPopup] = useState(false);
 const [rating, setRating] = useState(0);
 const [feedback, setFeedback] = useState("");
+const navigate=useNavigate();
 
 
   const { id } = useParams();
@@ -228,7 +235,7 @@ const [feedback, setFeedback] = useState("");
               onEnded={() => handleVideoComplete(activeLecture)}
             >
               <source
-                src={`${import.meta.env.VITE_BACKEND_URL}${
+                src={`${import.meta.env.VITE_BACKEND_URL}/api${
                   activeLecture.video
                 }`}
                 type="video/mp4"
@@ -293,7 +300,7 @@ const [feedback, setFeedback] = useState("");
                       Lecture Notes
                     </h3>
                     <a
-                      href={`${import.meta.env.VITE_BACKEND_URL}${
+                      href={`${import.meta.env.VITE_BACKEND_URL}/api${
                         activeLecture.notes.download
                       }`}
                       target="_blank"
@@ -322,7 +329,7 @@ const [feedback, setFeedback] = useState("");
                       <p className="text-xs text-gray-500">1.2 MB</p>
                     </div>
                     <a
-                      href={`${import.meta.env.VITE_BACKEND_URL}${
+                      href={`${import.meta.env.VITE_BACKEND_URL}/api${
                         activeLecture.attachFile
                       }`}
                       className="bg-blue-500 text-white px-4 py-1 rounded text-sm hover:bg-blue-600"
@@ -341,7 +348,7 @@ const [feedback, setFeedback] = useState("");
                   </h3>
                   <div className="flex items-center gap-10">
                     <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}${
+                      src={`${import.meta.env.VITE_BACKEND_URL}/api${
                         course.instructor.image
                       }`}
                       alt="Instructor"
@@ -443,7 +450,7 @@ const [feedback, setFeedback] = useState("");
           <img
             src={
               fb.image
-                ? `${import.meta.env.VITE_BACKEND_URL}${fb.image}`
+                ? `${import.meta.env.VITE_BACKEND_URL}/api${fb.image}`
                 : "/default-avatar.png"
             }
             alt="Student"
@@ -593,7 +600,9 @@ const [feedback, setFeedback] = useState("");
                   {course.completedPercent === 100 && (
                     <button
                       className=" rounded mt-4 hover:bg-green-700 w-full"
-                      onClick={openFinalExam}
+                      onClick={
+                        ()=>{navigate(`/student/final-quiz/${id}`);}
+                    }
                     >
                       🎓 Take Final Exam
                     </button>
@@ -623,7 +632,7 @@ const [feedback, setFeedback] = useState("");
               {course.certificateTemplate?.preview_image ? (
                 // Case 1: Show preview image if available
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}${
+                  src={`${import.meta.env.VITE_BACKEND_URL}/api${
                     course.certificateTemplate.preview_image
                   }`}
                   alt="Course Certificate"
@@ -740,7 +749,7 @@ const [feedback, setFeedback] = useState("");
                           {s.concept_title} - {s.content_title}
                           {s.video_url && (
                             <a
-                              href={`${import.meta.env.VITE_BACKEND_URL}${
+                              href={`${import.meta.env.VITE_BACKEND_URL}/api${
                                 s.video_url
                               }`}
                               className="text-blue-600 underline ml-2"
@@ -780,65 +789,7 @@ const [feedback, setFeedback] = useState("");
           </div>
         </div>
       )}
-      {showFinalExam && (
-        <div className="fixed inset-0 bg-[#000000B2] flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow w-full max-w-lg">
-            <h2 className="text-xl font-bold mb-4">Final Exam</h2>
-
-            {quizQuestions.map((q, i) => (
-              <div key={i} className="mb-4">
-                <p className="font-semibold">
-                  {i + 1}. {q.question}
-                </p>
-                <div className="ml-4 mt-2">
-                  {q.options.map((opt, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-2 mb-1 text-sm text-gray-700 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name={`question-${i}`}
-                        value={opt}
-                        checked={answers[i] === opt}
-                        onChange={() =>
-                          setAnswers((prev) => ({ ...prev, [i]: opt }))
-                        }
-                        className="accent-blue-600"
-                      />
-                      {opt}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            <div className="flex justify-end gap-4 mt-6">
-              <button
-                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
-                onClick={() => {
-                  setShowFinalExam(false);
-                  setQuizQuestions([]);
-                  setAnswers({});
-                  setResult(null);
-                  setShowResultPopup(false);
-                  setCertificateUrl(null);
-                  setEvaluationDetails([]);
-                }}
-              >
-                Close
-              </button>
-
-              <button
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                onClick={handleFinalExamSubmit}
-              >
-                Submit Exam
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      
       {showResultPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow w-full max-w-lg text-center">
@@ -847,7 +798,7 @@ const [feedback, setFeedback] = useState("");
 
             {certificateUrl && (
               <a
-                href={`${import.meta.env.VITE_BACKEND_URL}${certificateUrl}`}
+                href={`${import.meta.env.VITE_BACKEND_URL}/api${certificateUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"

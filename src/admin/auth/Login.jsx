@@ -1,6 +1,6 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api.jsx';
+import api from '../../api';
 const AdminLogin = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +13,7 @@ const AdminLogin = () => {
 
     try {
       const response = await api.post('/api/login/', {
-        username: usernameOrEmail,
+        email: usernameOrEmail,
         password: password,
       });
 

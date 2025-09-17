@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import login from "../images/login.png";
 import logo from "../../icons/logo.svg";
-import eye from "../../icons/Eye.svg";
+import eye from "../../icons/eye.svg";
 import eyeSlash from "../../icons/EyeSlash.svg";
 import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
-import api from "../../api.jsx";
-import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
@@ -27,37 +27,28 @@ const Login = () => {
   
     try {
       const res = await api.post("/api/login/", {
-        username: formData.username,
+        email: formData.email,
         password: formData.password,
       });
   
       localStorage.setItem("access", res.data.access);
       localStorage.setItem("refresh", res.data.refresh);
-  
-      
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      console.log("res.data.role",res.data.user)
-      if(res.data.user.role=="student"){
-        navigate("/student/dashboard");
-      }
-      else if(res.data.user.role=="instructor"){
-        navigate("/instructor/dashboard");
-        }
-      else if(res.data.user.role=="admin"){
-          navigate("/admin/dashboard");
-      }
-
-
-
   
-      // ✅ Navigate to student dashboard
-      // navigate("/student/dashboard");  // or just "/student" if your route handles it
+      console.log("res.data.user", res.data.user);
+
+      if (res.data.user.role === "student") {
+        navigate("/student/dashboard");
+      } else if (res.data.user.role === "instructor") {
+        navigate("/instructor/dashboard");
+      } else if (res.data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      }
     } catch (err) {
       alert("Invalid credentials. Please try again.");
       console.error(err);
     }
   };
-  
 
   return (
     <div className="flex h-screen">
@@ -67,35 +58,41 @@ const Login = () => {
 
       <div className="items-center justify-center mx-auto w-1/2">
         <div className="flex space-x-3 justify-center items-center text-xg font-medium text-gray-700 py-5">
-          <p>Don’t have account?</p>
-          <a href='/student/signup'> <button className="text-blue-500">Create Account</button></a>
+          <p>Don’t have an account?</p>
+          <a href='/student/signup'>
+            <button className="text-blue-500">Create Account</button>
+          </a>
         </div>
 
         <div className="flex items-center justify-center">
           <div className="w-full max-w-xl">
             <div className="text-center mb-6">
-              <img src={logo} alt="Logo" className="mx-auto h-20 " />
+              <Link to="/">
+                <img src={logo} alt="Logo" className="mx-auto w-32 mb-2 cursor-pointer" />
+              </Link>
               <h2 className="text-3xl font-bold mt-7">Sign in to your account</h2>
             </div>
 
             <form className="space-y-5" onSubmit={handleSubmit}>
-              <label className="block text-sm text-gray-600 mb-1">Username</label>
+              {/* Email Field */}
+              <label className="block text-sm text-gray-600 mb-1">Email</label>
               <input
-                type="text"
-                name="username"
-                placeholder="Username..."
-                value={formData.username}
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+                value={formData.email}
                 onChange={handleChange}
                 className="w-full h-10 border border-gray-200 p-3 rounded"
                 required
               />
 
+              {/* Password Field */}
               <label className="block text-sm text-gray-600 mb-1">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Create password"
+                  placeholder="Enter password"
                   value={formData.password}
                   onChange={handleChange}
                   className="w-full h-10 border border-gray-300 px-3 pr-10 rounded"

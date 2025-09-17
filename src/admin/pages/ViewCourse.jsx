@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../../api.jsx';
+import api from '../../api';
 
 const AdminCourseDetail = () => {
   const { courseId } = useParams();
@@ -34,12 +34,12 @@ const AdminCourseDetail = () => {
 
       {/* Demo Video */}
       {course.demoVideo && (
-        <video src={`${import.meta.env.VITE_BACKEND_URL}${course.demoVideo}`} controls className="w-full rounded-md shadow" />
+        <video src={`${import.meta.env.VITE_BACKEND_URL}/api${course.demoVideo}`} controls className="w-full rounded-md shadow" />
       )}
 
       {/* Instructor Info */}
       <div className="flex items-center gap-4 mt-4">
-        <img src={`${import.meta.env.VITE_BACKEND_URL}${course.instructor.image}`} alt="Instructor" className="w-16 h-16 rounded-full" />
+        <img src={`${import.meta.env.VITE_BACKEND_URL}/api${course.instructor.image}`} alt="Instructor" className="w-16 h-16 rounded-full" />
         <div>
           <p className="font-bold">{course.instructor.name}</p>
           <p className="text-sm text-gray-600">{course.instructor.role}</p>
@@ -88,7 +88,7 @@ const AdminCourseDetail = () => {
             <div key={lecture.content_id} className="border-l-4 border-blue-400 pl-4 mb-4">
               <p className="font-medium">{lecture.title}</p>
               
-              {lecture.video && <video src={`${import.meta.env.VITE_BACKEND_URL}${lecture.video}`} controls className="mt-2 w-full rounded" />}
+              {lecture.video && <video src={`${import.meta.env.VITE_BACKEND_URL}/api${lecture.video}`} controls className="mt-2 w-full rounded" />}
               {lecture.description && <p className="mt-2">{lecture.description}</p>}
 
               {/* Notes */}
@@ -96,10 +96,10 @@ const AdminCourseDetail = () => {
                 <p className="mt-2 text-sm italic text-gray-700">Note: {lecture.notes.text}</p>
               )}
               {lecture.notes.download && (
-                <a href={`${import.meta.env.VITE_BACKEND_URL}${lecture.notes.download}`} className="text-blue-500 text-sm underline block mt-1" target="_blank" rel="noreferrer">Download Notes</a>
+                <a href={`${import.meta.env.VITE_BACKEND_URL}/api${lecture.notes.download}`} className="text-blue-500 text-sm underline block mt-1" target="_blank" rel="noreferrer">Download Notes</a>
               )}
               {lecture.attachFile && (
-                <a href={`${import.meta.env.VITE_BACKEND_URL}${lecture.attachFile}`} className="text-blue-500 text-sm underline block mt-1" target="_blank" rel="noreferrer">Download Attachment</a>
+                <a href={`${import.meta.env.VITE_BACKEND_URL}/api${lecture.attachFile}`} className="text-blue-500 text-sm underline block mt-1" target="_blank" rel="noreferrer">Download Attachment</a>
               )}
 
               {/* Content Quiz (if any) */}

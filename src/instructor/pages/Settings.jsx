@@ -1,11 +1,13 @@
-import  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import upload from "../../icons/upload.svg";
-import api from "../../api.jsx";
+import User from "../../icons/User.svg";
+import api from "../../api";
 
 const AccountSettings = () => {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
+    email: "",   // ✅ added
     username: "",
     phone_number: "",
     headline: "",
@@ -36,6 +38,7 @@ const AccountSettings = () => {
           ...prev,
           first_name: data.user.first_name,
           last_name: data.user.last_name,
+          email: data.user.email,   // ✅ added
           username: data.user.username,
           phone_number: data.phone_number || "",
           headline: data.headline || "",
@@ -84,40 +87,49 @@ const AccountSettings = () => {
         <h2 className="text-xl font-semibold mb-4">Account Settings</h2>
 
         {/* Grid layout for top section with image and essential fields */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
           {/* Left Side: Form Fields */}
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <span className="col-span-2">Full name</span>
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-y-0 gap-x-2">
+            <span className="col-span-2 mb-1">Full name</span>
             <input
               value={form.first_name}
               onChange={(e) => setForm({ ...form, first_name: e.target.value })}
               placeholder="First name"
-              className="border p-2 rounded"
+              className="border p-2 rounded h-10"
             />
             <input
               value={form.last_name}
               onChange={(e) => setForm({ ...form, last_name: e.target.value })}
               placeholder="Last name"
-              className="border p-2 rounded"
+              className="border p-2 rounded h-10"
             />
 
-            <span className="col-span-2">Username</span>
+            {/* <span className="col-span-2">Username</span>
             <input
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
               placeholder="Enter your username"
               className="border p-2  rounded"
-            />
-            <span className="col-span-2">Phone Number</span>
+            /> */}
+            <span className="col-span-2 mb-1">Email</span>
+            <input
+  value={form.email}
+  onChange={(e) => setForm({ ...form, email: e.target.value })}
+  placeholder="Email"
+  type="email"
+  className="col-span-2 border p-2 rounded h-10"
+  disabled
+/>
+            <span className="col-span-2 mb-1">Phone Number</span>
             <div className="flex gap-2">
-              <select className="border p-2 rounded w-24">
+              <select className="border p-2 rounded w-24 h-10">
                 <option value="+91">+91</option>
               </select>
               <input
                 value={form.phone_number}
                 onChange={(e) => setForm({ ...form, phone_number: e.target.value })}
                 placeholder="Your Phone number..."
-                className="border p-2 rounded w-full"
+                className="border p-2 rounded w-full h-10"
               />
             </div>
           </div>
@@ -131,10 +143,10 @@ const AccountSettings = () => {
                     imageFile
                       ? URL.createObjectURL(imageFile)
                       : form.profile_picture
-                      ? `${import.meta.env.VITE_BACKEND_URL}${
+                      ? `${import.meta.env.VITE_BACKEND_URL}/api${
                           form.profile_picture
                         }`
-                      : "https://via.placeholder.com/150"
+                      : User
                   }
                   alt="User"
                   className="w-full h-full object-cover"

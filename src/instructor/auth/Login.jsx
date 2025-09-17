@@ -1,20 +1,18 @@
-import  { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import login from "../images/login.png";
 import logo from "../../icons/logo.svg";
-import eye from "../../icons/Eye.svg";
+import eye from "../../icons/eye.svg";
 import eyeSlash from "../../icons/EyeSlash.svg";
 import google from "../../icons/google.svg";
 import fb from "../../icons/fb.svg";
 import apple from "../../icons/apple.svg";
-import api from "../../api.jsx";
-import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ username: "", password: "" });
+const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const passwordInputRef = useRef(null); // Add this line
-
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -23,36 +21,30 @@ const Login = () => {
   
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const res = await api.post("/api/login/", {
-        username: formData.username,
-        password: formData.password,
-      });
-  
-      localStorage.setItem("access", res.data.access);
-      localStorage.setItem("refresh", res.data.refresh);
-  
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      localStorage.setItem("role", res.data.user.role); // Save role to localStorage
-      console.log("res.data.role",res.data.user.role)
-      if(res.data.user.role=="student"){
-        navigate("/student/dashboard");
-      }
-      else if(res.data.user.role=="instructor"){
-        navigate("/instructor/dashboard");
-        }
-      else if(res.data.user.role=="admin"){
-        navigate("/admin/dashboard");
-      }
-      // ✅ Navigate to student dashboard
-      // navigate("/instructor/dashboard");  // or just "/student" if your route handles it
-    } catch (err) {
-      alert("Invalid credentials. Please try again.");
-      console.error(err);
-    }
-  };
+  e.preventDefault();
+
+  try {
+    const res = await api.post("/api/login/", {
+  email: formData.email,  // ✅ already using email here
+  password: formData.password,
+});
+
+
+    localStorage.setItem("access", res.data.access);
+    localStorage.setItem("refresh", res.data.refresh);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+    localStorage.setItem("role", res.data.user.role);
+
+    if (res.data.user.role === "student") navigate("/student/dashboard");
+    else if (res.data.user.role === "instructor") navigate("/instructor/dashboard");
+    else if (res.data.user.role === "admin") navigate("/admin/dashboard");
+
+  } catch (err) {
+    alert("Invalid credentials. Please try again.");
+    console.error(err);
+  }
+};
+
   
 
   useEffect(() => {
@@ -80,27 +72,23 @@ const Login = () => {
         <div className="flex items-center justify-center">
           <div className="w-full max-w-xl">
             <div className="text-center mb-6">
-              <img src={logo} alt="Logo" className="mx-auto h-24 " />
+<Link to="/">
+              <img src={logo} alt="Logo" className="w-32 mx-auto mb-4 cursor-pointer" />
+</Link> 
               <h2 className="text-3xl font-bold mt-7">Sign in to your account</h2>
             </div>
 
             <form className="space-y-5" onSubmit={handleSubmit}>
              <div className="relative w-full mt-4">
-  <label className="absolute left-2  bg-white text-xs px-1 text-gray-700 z-10">
-    Username
+  <label className="absolute left-2 bg-white text-xs px-1 text-gray-700 z-10">
+    Email
   </label>
   <input
-    type="text"
-    name="username"
-    placeholder="Enter your username"
-    value={formData.username}
+    type="email"
+    name="email"
+    placeholder="Enter your email"
+    value={formData.email}
     onChange={handleChange}
-    onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      passwordInputRef.current?.focus();  // Focus password input
-    }
-  }}
     className="w-full border border-black rounded px-3 py-2 mt-2 text-gray-800"
     required
   />
@@ -120,7 +108,6 @@ const Login = () => {
   placeholder="Enter password"
   value={formData.password}
   onChange={handleChange}
-  ref={passwordInputRef}  // Attach ref here
   className="w-full border border-black rounded px-3 py-2 mt-2 pr-10 text-gray-800"
 />
 

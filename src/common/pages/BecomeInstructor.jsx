@@ -1,7 +1,8 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
-import image from '../images/Image.png'
-import users from '../../icons/Users.svg';
-import notebook from '../../icons/Notebook.svg';
+import image from '../images/image.png'
+import users from '../../icons/users.svg';
+import notebook from '../../icons/notebook.svg';
 import GlobeHemisphereWest from '../../icons/GlobeHemisphereWest.svg';
 import CircleWavyCheck from '../../icons/CircleWavyCheck.svg';
 import Stack from '../../icons/Stack.svg';
@@ -16,37 +17,27 @@ import { FaEnvelope, FaQuoteLeft } from 'react-icons/fa';
 import arrow from '../../icons/BlueArrow.svg'
 import help from '../images/help.png'
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import images from '../images/Images.png'
+import images from '../images/images.png'
 import teacher from '../images/teacher.png'
-import quotes from '../../icons/Quotes.svg'
+import quotes from '../../icons/quotes.svg'
 
 
 
 const features = [
   {
-    title: '	Easy Course Creation Tools ',
+    title: 'Tech your students as you want.',
     description:
-      'Upload videos, quizzes, resources, and more.',
+      'Morbi quis lorem non orci fermentum euismod. Nam sapien tellus, aliquam nec porttitor vel, pellentesque at metus.',
   },
   {
-    title: 'Global Reach ',
+    title: 'Manage your course, payment in one place',
     description:
-      'Teach thousands of students from all over the world.',
+      'Sed et mattis urna. Sed tempus fermentum est, eu lobortis nibh consequat eu. Nullam vel libero pharetra, euismod turpis et, elementum enim.',
   },
   {
-    title: 'Monetize Your Knowledge ',
+    title: 'Chat with your students',
     description:
-      'Earn revenue for every course enrollment.',
-  },
-  {
-    title: 'Dashboard & Analytics ',
-    description:
-      'Track your performance, engagement, and earnings',
-  },
-  {
-    title: '24/7 Support ',
-    description:
-      'Get assistance from our dedicated instructor success team.',
+      'Nullam mattis lectus ac diam egestas posuere. Praesent auctor massa orci, ut fermentum eros dictum id.',
   },
 ];
 
@@ -136,13 +127,10 @@ const BecomeInstructor = () => {
       {/* Text Section */}
       <div className="w-1/2 text-left ">
         <h2 className="text-4xl  font-semibold text-[#00113D] mb-4">
-         Inspire Learners. Earn Income. Grow Globally.
+          Become an Instructor
         </h2>
         <p className="text-gray-600 text-lg mb-6 max-w-[29rem]">
-          Turn your passion and expertise into a rewarding teaching career with The Learning hub.
-
-
-
+          Become an instructor & start teaching with 26k certified instructors. Create a success story with 67.1k Students — Grow yourself with 71 countries.
         </p>
         <button className="bg-[#58A6FD] hover:bg-blue-600 text-white font-medium py-2 px-6  shadow">
           Get Started
@@ -174,10 +162,10 @@ const BecomeInstructor = () => {
         </div>
       <div className="w-1/2 mx-auto px-20 py-2">
         <h2 className="text-2xl  font-semibold text-[#00113D] mb-4">
-          Why Teach on The Learning Hub?
+          Why you’ll start teaching on GA LMS
         </h2>
         <p className="text-gray-600 text-sm mb-8">
-          At The Learning Hub, we believe great educators exist in every industry, and we give you the platform to teach what you love, reach global learners, and earn while doing it. Whether you're an experienced trainer, a subject matter expert, or a professional with unique knowledge, our tools make it easy to create, launch, and scale your online courses.
+          Praesent congue ornare nibh sed ullamcorper. Proin venenatis tellus non turpis scelerisque, vitae auctor arcu ornare. Cras vitae nulla a purus mollis venenatis.
         </p>
 
         <div className="space-y-6">

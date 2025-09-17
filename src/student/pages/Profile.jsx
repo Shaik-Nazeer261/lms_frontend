@@ -1,18 +1,21 @@
-import { useState, useEffect } from "react";
-import Profiledb from "../components/profiledb.jsx";
-import ProfileCourses from "../components/ProfileCourses.jsx";
-import Profileteachers from "../components/profileteachers.jsx";
-import ProfileSettings from "../components/ProfileSettings.jsx";
-import Wishlist from "../components/Wishlist.jsx";
-import api from "../../api.jsx";
-import ChatMessenger from "../components/ChatMessenger.jsx";
-import PurchaseHistory from "../components/PurchaseHistory.jsx";
+import React, { useState, useEffect } from "react";
+import Profiledb from "../components/profiledb";
+import ProfileCourses from "../components/ProfileCourses";
+import Profileteachers from "../components/profileteachers";
+import ProfileSettings from "../components/ProfileSettings";
+import Wishlist from "../components/WishList";
+import api from "../../api";
+import ChatMessenger from "../components/ChatMessenger";
+import PurchaseHistory from "../components/PurchaseHistory";
+import QuizList from "../components/QuizList";
+import QuizReport from "../components/QuizReport";
 
 const tabs = [
   "Dashboard",
-  "Courses",
+  // "Courses",
   "Teachers",
   "Message",
+  "Quiz report",
   "Wishlist",
   "Purchase History",
   "Settings",
@@ -34,6 +37,7 @@ const Profile = () => {
     website: "",
     social_links: {},
   });
+  const [selectedCourseId, setSelectedCourseId] = useState(null); // ✅ track course
 
    useEffect(() => {
     api.get('/api/student/profile/')
@@ -52,18 +56,18 @@ const Profile = () => {
         <div className="flex justify-between items-center">
           <div className="flex gap-4 items-center">
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL}${profile.profile_picture}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/api${profile.profile_picture}`}
               alt="Profile"
               className="rounded-full w-16 h-16 object-cover"
             />
             <div>
-              <h2 className="text-lg font-bold text-[#00113D]">{profile.user.username}</h2>
+              <h2 className="text-lg font-bold text-[#00113D]">{profile.user.first_name} {profile.user.last_name}</h2>
               <p className="text-sm text-gray-500">{profile.headline}</p>
             </div>
           </div>
-          <button className="bg-blue-50 text-blue-600 font-semibold px-4 py-2 rounded hover:bg-blue-100">
+          {/* <button className="bg-blue-50 text-blue-600 font-semibold px-4 py-2 rounded hover:bg-blue-100">
             Become Instructor →
-          </button>
+          </button> */}
         </div>
 
         {/* Tabs */}
@@ -89,14 +93,23 @@ const Profile = () => {
         {activeTab === "Dashboard" && (
           <Profiledb/>
         )}
-        {activeTab === "Courses" && (
+        {/* {activeTab === "Courses" && (
           <ProfileCourses/>
-        )}
+        )} */}
         {activeTab === "Teachers" && (
           <Profileteachers/>
         )}
         {activeTab === "Message" && (
           <ChatMessenger/>
+        )}
+        {activeTab === "Quiz report" && (
+          <div>
+            {!selectedCourseId ? (
+              <QuizList onSelectCourse={setSelectedCourseId} /> // ✅ show list
+            ) : (
+              <QuizReport courseId={selectedCourseId} onBack={() => setSelectedCourseId(null)}/> // ✅ show report
+            )}
+          </div>
         )}
         {activeTab === "Wishlist" && (
           <Wishlist/>

@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaChevronDown, FaChevronUp, FaRegCreditCard, FaPlayCircle } from 'react-icons/fa';
-import api from '../../api.jsx';
+import api from '../../api';
 
 const PurchaseHistory = () => {
   const [history, setHistory] = useState([]);
@@ -59,7 +59,7 @@ const PurchaseHistory = () => {
                   {entry.courses.map((course, i) => (
                     <div key={i} className="flex gap-4 items-start">
                       <img
-                        src={`${import.meta.env.VITE_BACKEND_URL}${course.image || '/placeholder.jpg'}`}
+                        src={`${import.meta.env.VITE_BACKEND_URL}/api${course.image || '/placeholder.jpg'}`}
                         alt="course"
                         className="w-28 h-20 object-cover rounded"
                       />

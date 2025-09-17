@@ -1,14 +1,22 @@
-import  { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FaClock, FaFolderOpen, FaPlay } from "react-icons/fa";
 import {
+  FiCheckCircle,
   FiChevronDown,
   FiChevronRight,
+  FiLock,
 } from "react-icons/fi";
-
+import { BsFolder } from "react-icons/bs";
+import { PiPlayCircle } from "react-icons/pi";
+import { LuClock } from "react-icons/lu";
+import cert from "../../student/images/cert.png";
 import { useParams } from "react-router-dom";
-import api from "../../api.jsx";
+import api from "../../api";
 import unlock from "../../icons/unlock.svg";
 import lock from "../../icons/lock.svg";
+import checked from "../../icons/checked.svg";
+import unchecked from "../../icons/unchecked.svg";
+import select from "../../icons/select.svg";
 import Vector from "../../icons/Vector.svg";
 import moment from "moment";
 
@@ -208,14 +216,14 @@ const [feedback, setFeedback] = useState("");
         <div className="flex-1 space-y-4">
           {activeLecture?.video ? (
             <video
-              key={activeLecture.video}
+              key={`${import.meta.env.VITE_BACKEND_URL}/api${activeLecture.video}`} // To reload video when source changes
               controls
               className="w-full rounded-md shadow-md"
               poster="/cover.jpg"
               onEnded={() => handleVideoComplete(activeLecture)}
             >
               <source
-                src={`${import.meta.env.VITE_BACKEND_URL}${
+                src={`${import.meta.env.VITE_BACKEND_URL}/api${
                   activeLecture.video
                 }`}
                 type="video/mp4"
@@ -280,7 +288,7 @@ const [feedback, setFeedback] = useState("");
                       Lecture Notes
                     </h3>
                     <a
-                      href={`${import.meta.env.VITE_BACKEND_URL}${
+                      href={`${import.meta.env.VITE_BACKEND_URL}/api${
                         activeLecture.notes.download
                       }`}
                       target="_blank"
@@ -309,7 +317,7 @@ const [feedback, setFeedback] = useState("");
                       
                     </div>
                     <a
-                      href={`${import.meta.env.VITE_BACKEND_URL}${
+                      href={`${import.meta.env.VITE_BACKEND_URL}/api${
                         activeLecture.attachFile
                       }`}
                       className="bg-blue-500 text-white px-4 py-1 rounded text-sm hover:bg-blue-600"
@@ -555,7 +563,7 @@ const [feedback, setFeedback] = useState("");
               {course.certificateTemplate?.preview_image ? (
                 // Case 1: Show preview image if available
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}${
+                  src={`${import.meta.env.VITE_BACKEND_URL}/api${
                     course.certificateTemplate.preview_image
                   }`}
                   alt="Course Certificate"
@@ -672,7 +680,7 @@ const [feedback, setFeedback] = useState("");
                           {s.concept_title} - {s.content_title}
                           {s.video_url && (
                             <a
-                              href={`${import.meta.env.VITE_BACKEND_URL}${
+                              href={`${import.meta.env.VITE_BACKEND_URL}/api${
                                 s.video_url
                               }`}
                               className="text-blue-600 underline ml-2"
@@ -779,7 +787,7 @@ const [feedback, setFeedback] = useState("");
 
             {certificateUrl && (
               <a
-                href={`${import.meta.env.VITE_BACKEND_URL}${certificateUrl}`}
+                href={`${import.meta.env.VITE_BACKEND_URL}/api${certificateUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"

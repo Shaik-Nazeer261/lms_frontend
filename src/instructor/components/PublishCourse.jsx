@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../../api.jsx';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../../api";
 
 const PublishCourse = ({ goToTab, courseId }) => {
-  const [welcomeMessage, setWelcomeMessage] = useState('');
-  const [congratsMessage, setCongratsMessage] = useState('');
-  const [instructors, setInstructors] = useState([
-    { id: 1, name: 'Username', role: 'UI/UX Designer', avatar: 'https://randomuser.me/api/portraits/men/1.jpg' },
-    { id: 2, name: 'Username', role: 'UI/UX Designer', avatar: 'https://randomuser.me/api/portraits/men/2.jpg' },
-  ]);
-  const navigate=useNavigate()
-
-  
+  const [welcomeMessage, setWelcomeMessage] = useState("");
+  const [congratsMessage, setCongratsMessage] = useState("");
+  const navigate = useNavigate();
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const userRole = storedUser?.role; // "instructor" or "admin"
+  const [suggestion, setSuggestion] = useState(null); // new
+  const [approvalStatus, setApprovalStatus] = useState(null); // new
+  const [showSuggestionModal, setShowSuggestionModal] = useState(false);
+  const [suggestionText, setSuggestionText] = useState("");
 
   useEffect(() => {
     if (courseId) {
       const fetchPublishDetails = async () => {
         try {
           const res = await api.get(`/api/instructor/publish-course/${courseId}/`);
-          setWelcomeMessage(res.data.welcome_message || '');
-          setCongratsMessage(res.data.congratulation_message || '');
+          setWelcomeMessage(res.data.welcome_message || "");
+          setCongratsMessage(res.data.congratulation_message || "");
+          setApprovalStatus(res.data.is_publish_info_approved);
+          setSuggestion(res.data.publish_suggestions);
         } catch (err) {
           console.error("Failed to fetch publish details:", err.response?.data || err.message);
         }
@@ -28,111 +30,191 @@ const PublishCourse = ({ goToTab, courseId }) => {
     }
   }, [courseId]);
 
-
-
   const handlePublish = async () => {
-  if (!courseId) {
-    alert("No course ID found.");
-    return;
-  }
+    if (!courseId) {
+      alert("No course ID found.");
+      return;
+    }
 
-  try {
-    const response = await api.post(`/api/instructor/publish-course/${courseId}/`, {
-      welcome_message: welcomeMessage,
-      congratulation_message: congratsMessage,
-    });
-    alert("Course info saved. Proceed to next step.");
-    navigate('/instructor/course-review', { state: { courseId } });
-  } catch (err) {
-    console.error("Publish error:", err.response?.data || err.message);
-    alert("Failed to save publish info.");
-  }
-};
+    try {
+      await api.post(`/api/instructor/publish-course/${courseId}/`, {
+        welcome_message: welcomeMessage,
+        congratulation_message: congratsMessage,
+        submit_for_approval: true,
+      });
+      alert("submitted for approval");
+    } catch (err) {
+      console.error("Publish error:", err.response?.data || err.message);
+      alert("Failed to save publish info.");
+    }
+  };
+
+  const handleSuggestionSubmit = async () => {
+    try {
+      const response = await api.put(
+        `/api/admin/final-course-approval/${courseId}/`,
+        { is_publish_info_approved: false, publish_suggestions: suggestionText }
+      );
+
+      if (response.status === 200) {
+        alert("Suggestion saved ✅");
+        setApprovalStatus(false);
+        setSuggestion(suggestionText);
+        setShowSuggestionModal(false);
+        setSuggestionText("");
+      }
+    } catch (err) {
+      console.error("Error saving suggestion:", err);
+      alert("Failed to save suggestion");
+    }
+  };
+
+  const handlesendforrectification = async () => {
+    try {
+      const response = await api.put(
+        `/api/admin/sendforrectification/${courseId}/`
+      );
+      if (response.status === 200) {
+        alert("Course sent for rectification ✅");
+        navigate("/admin/approvals");
+      }
+    } catch (err) {
+      console.error("Error sending for rectification:", err);
+      alert("Failed to send for rectification");
+    }
+  };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-bold text-[#00113D]">Publish Course</h2>
+    <div className="flex flex-col h-full">
+      {/* Page Content */}
+      <div className="flex-1 space-y-6 overflow-y-auto pb-28">
+        <h2 className="text-xl font-bold text-[#00113D]">Publish Course</h2>
+        {suggestion && (
+  <div className="mb-6">
+    <h3 className="text-base font-semibold text-[#00113D] mb-2">Suggestion</h3>
+    <div>
+      <p className="text-sm font-medium text-gray-700 mb-1">Message</p>
+      <div className="bg-gray-100 border border-gray-300 rounded-md p-4 text-gray-800 text-sm">
+        {suggestion}
+      </div>
+    </div>
+  </div>
+)}
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium mb-1">Welcome Message</label>
-          <textarea
-            value={welcomeMessage}
-            onChange={(e) => setWelcomeMessage(e.target.value)}
-            placeholder="Enter course starting message here..."
-            className="w-full border border-gray-300 rounded-md p-3 h-28"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Congratulations Message</label>
-          <textarea
-            value={congratsMessage}
-            onChange={(e) => setCongratsMessage(e.target.value)}
-            placeholder="Enter your course completed message here..."
-            className="w-full border border-gray-300 rounded-md p-3 h-28"
-          />
+        <div className="grid md:grid-cols-2 gap-6 ">
+          <div>
+            <label className="block text-sm font-medium mb-1">Welcome Message</label>
+            <textarea
+              value={welcomeMessage}
+              onChange={(e) => setWelcomeMessage(e.target.value)}
+              placeholder="Enter course starting message here..."
+              className="w-full border border-gray-300 rounded-md p-3 h-28"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Congratulations Message</label>
+            <textarea
+              value={congratsMessage}
+              onChange={(e) => setCongratsMessage(e.target.value)}
+              placeholder="Enter your course completed message here..."
+              className="w-full border border-gray-300 rounded-md p-3 h-28"
+            />
+          </div>
         </div>
       </div>
 
-      {/* <div>
-        <label className="block font-semibold mb-2">Add Instructor (0{instructors.length})</label>
-        <input
-          type="text"
-          placeholder="Search by username"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full border border-gray-300 rounded-md p-2 mb-4"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {instructors.map((instructor) => (
-            <div
-              key={instructor.id}
-              className="flex items-center justify-between border rounded-md p-4 bg-gray-50"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={instructor.avatar}
-                  alt={instructor.name}
-                  className="w-10 h-10 rounded-full"
-                />
-                <div>
-                  <p className="font-semibold text-[#00113D]">{instructor.name}</p>
-                  <p className="text-xs text-gray-500">{instructor.role}</p>
-                </div>
-              </div>
-              <button
-                onClick={() => handleRemoveInstructor(instructor.id)}
-                className="text-gray-400 hover:text-red-500 text-lg font-bold"
-              >
-                ×
-              </button>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      {/* Bottom Buttons */}
-      <div className="flex justify-between mt-6">
+      {/* Fixed Bottom Buttons */}
+      <div className="fixed bottom-13 left-64 right-0 bg-white  shadow-md px-6 py-4 flex justify-between items-center z-50">
         <button
           className="px-6 py-2 border text-gray-600 rounded-md hover:bg-gray-100"
-          onClick={() => goToTab('curriculum')}
+          onClick={() => goToTab("curriculum")}
         >
           Prev Step
         </button>
-        <div className="flex gap-4">
-          <button className="px-6 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
-            Save
+       {userRole === "instructor" ? (
+          //  Instructor buttons
+          <div className="flex gap-4">
+            <button
+              className="px-6 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100"
+              onClick={() => handlePublish(false)}
+            >
+              Save
+            </button>
+            <button
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              onClick={() => handlePublish(true)}
+            >
+              Submit for review
+            </button>
+          </div>
+        ) : (
+          //  Admin buttons
+          <div className="flex gap-4">
+            <button
+            className="px-6 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100"
+            onClick={() => setShowSuggestionModal(true)}
+          >
+            Add Suggestion
           </button>
-          <button
-  className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-  onClick={handlePublish}
->
-  Submit For Review
-</button>
-
-        </div>
+           <button
+            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            onClick={async () => {
+              try {
+                const response = await api.put(
+                  `/api/admin/final-course-approval/${courseId}/`,
+                  { is_publish_info_approved: true, publish_suggestions: "" }
+                );
+                if (response.status === 200) {
+                  alert("Course approved ✅");
+                  setApprovalStatus(true);
+                  setSuggestion(null);
+                  navigate("/admin/approvals");
+                }
+              } catch (err) {
+                alert("Approval failed ");
+              }
+            }}
+            disabled={approvalStatus}
+          >
+            {approvalStatus ? "Approved" : "Approve & Next"}
+          </button>
+            <button
+              className="px-6 py-2 border text-gray-600 rounded-md hover:bg-gray-50"
+              onClick={() => handlesendforrectification()}
+            >
+              Send for Rectification
+            </button>
+          </div>
+        )}
       </div>
+      {showSuggestionModal && (
+        <div className="fixed inset-0 bg-[#00000080] flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg w-[400px] shadow-lg">
+            <h3 className="text-lg font-semibold mb-4">Add Suggestion</h3>
+            <textarea
+              rows="4"
+              className="w-full border border-gray-300 p-2 rounded-md"
+              placeholder="Enter suggestion..."
+              value={suggestionText}
+              onChange={(e) => setSuggestionText(e.target.value)}
+            />
+            <div className="flex justify-end gap-3 mt-4">
+              <button
+                className="px-4 py-2 border rounded-md"
+                onClick={() => setShowSuggestionModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-blue-600 text-white rounded-md"
+                onClick={handleSuggestionSubmit}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
